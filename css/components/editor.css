@@ -91,3 +91,7 @@
 .editor .text-editor {
   gap: 2em;
 }
+
+.editor .font-family-select {
+  min-width: 7em;
+}

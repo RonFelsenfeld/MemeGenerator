@@ -93,12 +93,18 @@ function setLineWidth(newWidth) {
   line.width = +newWidth
 }
 
+function setFontFamily(family) {
+  const line = getCurrLine()
+  line.family = family
+}
+
 ////////////////////////////////////////////////////
 
 function _createLine() {
   return {
     id: makeId(),
     txt: 'Enter your text',
+    family: 'Impact',
     size: 20,
     color: 'black',
     x: 50,

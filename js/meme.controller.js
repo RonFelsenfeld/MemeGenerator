@@ -22,7 +22,7 @@ function renderText() {
   const { lines } = getMeme()
 
   lines.forEach(line => {
-    gCtx.font = `${line.size}px Ariel`
+    gCtx.font = `${line.size}px ${line.family}`
     gCtx.fillStyle = `${line.color}`
     gCtx.textAlign = 'left'
     gCtx.textBaseline = 'top'
@@ -92,6 +92,15 @@ function onCanvasClicked(ev) {
   renderMeme()
 }
 
+function onChangeFontFamily(family) {
+  setFontFamily(family)
+
+  const lineWidth = calcLineWidth()
+  setLineWidth(lineWidth)
+
+  renderMeme()
+}
+
 ////////////////////////////////////////////////////
 
 function highlightCurrLine() {
@@ -109,9 +118,9 @@ function highlightCurrLine() {
 }
 
 function calcLineWidth() {
-  const { txt, size } = getCurrLine()
+  const { txt, family, size } = getCurrLine()
 
-  gCtx.font = `${size}px Ariel`
+  gCtx.font = `${size}px ${family}`
   const measureObj = gCtx.measureText(txt)
 
   return measureObj.width
