@@ -2,9 +2,87 @@
   border: 2px solid black;
 }
 
-.text-editor {
-  background-color: lightblue;
+.editor-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   column-gap: 2em;
+
+  padding: 3em;
+  border-radius: var(--border-radius);
+  background-color: var(--primary-1);
+}
+
+.editor {
+  flex-direction: column;
+  gap: 2em;
+  align-self: center;
+
+  background-color: rgba(173, 216, 230, 0.606);
+  padding: 1em;
+}
+
+.editor .btn {
+  width: 3em;
+  height: 3em;
+
+  border: none;
+  border-radius: 13px;
+
+  background-color: var(--primary-2);
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.357);
+  transition: background-color var(--color-transition);
+}
+
+/* //////////////////////////////////////////////////// */
+
+/* Input Area */
+
+.editor .input-area {
+  width: 100%;
+  gap: 2em;
+}
+
+.input-area .text-input {
+  flex-grow: 1;
+  padding: 0.6em;
+  border-radius: 2em;
+}
+
+.input-area .btn-clear {
+  width: 30%;
+  padding: 0.5em;
+  color: var(--primary-2);
+  background-color: black;
+}
+
+/* //////////////////////////////////////////////////// */
+
+/* Line Controls */
+
+.editor .line-controls {
+  gap: 2em;
+}
+
+.line-controls .btn-add-line {
+  background-color: green;
+}
+
+.line-controls .btn-add-line:hover {
+  background-color: rgb(0, 84, 0);
+}
+
+.line-controls .btn-switch-line {
+  background-color: orange;
+}
+
+.line-controls .btn-switch-line:hover {
+  background-color: rgb(184, 120, 1);
+}
+
+/* //////////////////////////////////////////////////// */
+
+/* Text Editor */
+
+.editor .text-editor {
+  gap: 2em;
 }

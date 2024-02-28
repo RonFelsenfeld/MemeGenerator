@@ -10,7 +10,7 @@
 
   <body onload="onInit()">
     <header class="main-header flex align-center space-between">
-      <h1>Meme Generator</h1>
+      <h1>Memerator</h1>
 
       <nav class="main-nav">
         <ul class="main-nav-list flex clean-list">
@@ -27,7 +27,7 @@
       </section>
 
       <section class="editor-section main-layout">
-        <div class="editor-container flex">
+        <div class="editor-container">
           <div class="canvas-container">
             <canvas
               class="main-canvas"
@@ -37,9 +37,8 @@
             ></canvas>
           </div>
 
-          <div class="editor">
-            <div class="input-area">
-              <label for="text-input">Text</label>
+          <div class="editor flex align-center">
+            <div class="input-area flex">
               <input
                 type="text"
                 name="text-input"
@@ -47,27 +46,20 @@
                 class="text-input"
                 oninput="onTextInput(this.value)"
                 autocomplete="off"
+                placeholder="Enter your text"
               />
               <button class="btn btn-clear" onclick="onClearInput()">
                 Clear
               </button>
             </div>
 
-            <div class="text-editor">
-              <button class="btn btn-font-inc" onclick="onIncreaseFont()">
-                <img src="img/increase.png" alt="Increase font size" />
-              </button>
-
-              <button class="btn btn-font-dec" onclick="onDecreaseFont()">
-                <img src="img/decrease.png" alt="Decrease font size" />
-              </button>
-
+            <div class="line-controls flex">
               <button class="btn btn-add-line" onclick="onAddLine()">
                 <img src="img/add-line.png" alt="Plus sign" />
               </button>
 
               <button
-                class="btn btn-next-line"
+                class="btn btn-switch-line"
                 data-dir="1"
                 onclick="onSetCurrLine(this.dataset)"
               >
@@ -75,11 +67,21 @@
               </button>
 
               <button
-                class="btn btn-prev-line"
+                class="btn btn-switch-line"
                 data-dir="-1"
                 onclick="onSetCurrLine(this.dataset)"
               >
                 <img src="img/arrow-up.png" alt="Arrow up" />
+              </button>
+            </div>
+
+            <div class="text-editor flex align-center">
+              <button class="btn btn-font-inc" onclick="onIncreaseFont()">
+                <img src="img/increase.png" alt="Increase font size" />
+              </button>
+
+              <button class="btn btn-font-dec" onclick="onDecreaseFont()">
+                <img src="img/decrease.png" alt="Decrease font size" />
               </button>
 
               <input
@@ -100,7 +102,7 @@
       </section>
     </main>
 
-    <footer class="main-footer"></footer>
+    <!-- ? Add footer -->
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/meme.service.js"></script>

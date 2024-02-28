@@ -1,0 +1,5 @@
+@media (max-width: 970px) {
+  .editor-container {
+    grid-template-columns: 1fr;
+  }
+}

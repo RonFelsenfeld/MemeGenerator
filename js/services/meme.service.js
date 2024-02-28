@@ -79,6 +79,7 @@ function increaseTextSize() {
 function decreaseTextSize() {
   const line = getCurrLine()
   line.size--
+  if (line.size < 1) line.size = 1
 }
 
 function addLine() {
