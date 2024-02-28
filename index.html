@@ -57,8 +57,24 @@
                 <img src="img/decrease.png" alt="Decrease font size" />
               </button>
 
-              <button class="btn btn-font-dec" onclick="onAddLine()">
-                <img src="img/add-line.png" alt="Add line" />
+              <button class="btn btn-add-line" onclick="onAddLine()">
+                <img src="img/add-line.png" alt="Plus sign" />
+              </button>
+
+              <button
+                class="btn btn-next-line"
+                data-dir="1"
+                onclick="onSetCurrLine(this.dataset)"
+              >
+                <img src="img/arrow-down.png" alt="Arrow down" />
+              </button>
+
+              <button
+                class="btn btn-prev-line"
+                data-dir="-1"
+                onclick="onSetCurrLine(this.dataset)"
+              >
+                <img src="img/arrow-up.png" alt="Arrow up" />
               </button>
 
               <input

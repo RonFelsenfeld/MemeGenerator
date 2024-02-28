@@ -50,6 +50,12 @@ function onAddLine() {
   renderMeme()
 }
 
+function onSetCurrLine({ dir }) {
+  SetCurrLine(+dir)
+}
+
+////////////////////////////////////////////////////
+
 function onDownloadMeme(elLink) {
   const content = gElCanvas.toDataURL('image/jpeg')
   elLink.href = content

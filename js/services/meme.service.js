@@ -69,6 +69,13 @@ function addLine() {
   gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
 }
 
+function SetCurrLine(dir) {
+  // If selectedLine is the last one && dir is positive (trying to go next line)
+  if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) return
+
+  gMeme.selectedLineIdx += dir
+}
+
 ////////////////////////////////////////////////////
 
 function _createLine() {
