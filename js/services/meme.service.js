@@ -103,6 +103,14 @@ function setLineAlignment(posX) {
   line.x = posX
 }
 
+function moveLine(dir) {
+  const line = getCurrLine()
+  line.y += dir
+
+  // Decided on purpose to give the option to get the line out of the canvas
+  // Maybe the user wants to hide part of it
+}
+
 ////////////////////////////////////////////////////
 
 function _createLine() {

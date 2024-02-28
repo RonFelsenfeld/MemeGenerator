@@ -116,6 +116,22 @@
                 <img src="img/align-to-right.png" alt="Align to right" />
               </button>
 
+              <button
+                class="btn btn-move-up"
+                data-dir="-1"
+                onclick="onMoveLine(this.dataset)"
+              >
+                Up
+              </button>
+
+              <button
+                class="btn btn-move-down"
+                data-dir="1"
+                onclick="onMoveLine(this.dataset)"
+              >
+                Down
+              </button>
+
               <select
                 class="btn font-family-select"
                 onchange="onChangeFontFamily(this.value)"

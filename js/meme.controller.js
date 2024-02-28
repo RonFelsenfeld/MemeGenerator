@@ -107,6 +107,11 @@ function onSetAlignment({ alignment }) {
   renderMeme()
 }
 
+function onMoveLine({ dir }) {
+  moveLine(+dir)
+  renderMeme()
+}
+
 ////////////////////////////////////////////////////
 
 function getAlignmentPos(alignment) {
