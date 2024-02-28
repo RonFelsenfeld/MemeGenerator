@@ -89,6 +89,7 @@
 /* Text Editor */
 
 .editor .text-editor {
+  flex-wrap: wrap;
   gap: 2em;
 }
 

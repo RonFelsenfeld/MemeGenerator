@@ -98,6 +98,11 @@ function setFontFamily(family) {
   line.family = family
 }
 
+function setLineAlignment(posX) {
+  const line = getCurrLine()
+  line.x = posX
+}
+
 ////////////////////////////////////////////////////
 
 function _createLine() {
@@ -106,9 +111,9 @@ function _createLine() {
     txt: 'Enter your text',
     family: 'Impact',
     size: 20,
-    color: 'black',
-    x: 50,
-    y: 50,
+    color: 'white',
+    x: 0,
+    y: 0,
     width: 119.9609375,
   }
 }

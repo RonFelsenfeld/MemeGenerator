@@ -101,6 +101,47 @@ function onChangeFontFamily(family) {
   renderMeme()
 }
 
+function onSetAlignment({ alignment }) {
+  const posOnX = getAlignmentPos(alignment)
+  setLineAlignment(posOnX)
+  renderMeme()
+}
+
+////////////////////////////////////////////////////
+
+function getAlignmentPos(alignment) {
+  let pos
+
+  switch (alignment) {
+    case 'left':
+      // If left --> stick to the left + FRAME_PAD
+      pos = 0 + FRAME_PAD
+      break
+    case 'center':
+      pos = calcAlignmentCenter()
+      break
+    case 'right':
+      pos = calcAlignmentRight()
+      break
+  }
+
+  return pos
+}
+
+function calcAlignmentCenter() {
+  const canvasCenter = gElCanvas.width / 2
+  const { width } = getCurrLine()
+  return canvasCenter - width / 2
+}
+
+function calcAlignmentRight() {
+  const canvasEnd = gElCanvas.width
+  const { width } = getCurrLine()
+
+  // width + FRAME_PAD * 2 = whole line's width
+  return canvasEnd - width - FRAME_PAD
+}
+
 ////////////////////////////////////////////////////
 
 function highlightCurrLine() {

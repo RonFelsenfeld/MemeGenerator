@@ -67,6 +67,7 @@
               <button
                 class="btn btn-switch-line"
                 data-dir="1"
+                title="Next line"
                 onclick="onSetCurrLine(this.dataset)"
               >
                 <img src="img/arrow-down.png" alt="Arrow down" />
@@ -75,6 +76,7 @@
               <button
                 class="btn btn-switch-line"
                 data-dir="-1"
+                title="Previous line"
                 onclick="onSetCurrLine(this.dataset)"
               >
                 <img src="img/arrow-up.png" alt="Arrow up" />
@@ -82,6 +84,38 @@
             </div>
 
             <div class="text-editor flex align-center">
+              <button class="btn btn-font-inc" onclick="onIncreaseFont()">
+                <img src="img/increase.png" alt="Increase font size" />
+              </button>
+
+              <button class="btn btn-font-dec" onclick="onDecreaseFont()">
+                <img src="img/decrease.png" alt="Decrease font size" />
+              </button>
+
+              <button
+                class="btn btn-align-left"
+                data-alignment="left"
+                onclick="onSetAlignment(this.dataset)"
+              >
+                <img src="img/align-to-left.png" alt="Align to left" />
+              </button>
+
+              <button
+                class="btn btn-align-center"
+                data-alignment="center"
+                onclick="onSetAlignment(this.dataset)"
+              >
+                <img src="img/align-to-center.png" alt="Align to center" />
+              </button>
+
+              <button
+                class="btn btn-align-right"
+                data-alignment="right"
+                onclick="onSetAlignment(this.dataset)"
+              >
+                <img src="img/align-to-right.png" alt="Align to right" />
+              </button>
+
               <select
                 class="btn font-family-select"
                 onchange="onChangeFontFamily(this.value)"
@@ -92,14 +126,6 @@
                 <option value="serif">serif</option>
                 <option value="Times New Roman">Times New Roman</option>
               </select>
-
-              <button class="btn btn-font-inc" onclick="onIncreaseFont()">
-                <img src="img/increase.png" alt="Increase font size" />
-              </button>
-
-              <button class="btn btn-font-dec" onclick="onDecreaseFont()">
-                <img src="img/decrease.png" alt="Decrease font size" />
-              </button>
 
               <input
                 type="color"
