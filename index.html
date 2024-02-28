@@ -9,6 +9,8 @@
   </head>
 
   <body onload="onInit()">
+    <div class="main-screen" onclick="onToggleMenu()"></div>
+
     <header class="main-header flex align-center space-between">
       <h1>Memerator</h1>
 
@@ -19,6 +21,10 @@
           <li><button class="btn">About</button></li>
         </ul>
       </nav>
+
+      <button class="btn-toggle-menu" onclick="onToggleMenu()" type="button">
+        ☰
+      </button>
     </header>
 
     <main>

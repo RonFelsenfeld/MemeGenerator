@@ -21,3 +21,11 @@
   color: var(--primary-base);
   background-color: var(--primary-2);
 }
+
+.main-header .btn-toggle-menu {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5em;
+  color: var(--primary-2);
+  display: none;
+}

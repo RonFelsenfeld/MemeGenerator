@@ -41,3 +41,7 @@ function showEditor() {
   const elEditor = document.querySelector('.editor-section')
   elEditor.style.display = 'grid'
 }
+
+function onToggleMenu() {
+  document.body.classList.toggle('menu-open')
+}
