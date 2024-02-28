@@ -6,13 +6,15 @@ let gElCanvas
 let gCtx
 
 function renderMeme() {
-  const { selectedImgId } = getMeme()
+  const { selectedImgId, lines } = getMeme()
 
   const img = new Image()
   img.src = `img/${selectedImgId}.jpg`
 
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
+    if (!lines.length) return
+
     renderText()
     highlightCurrLine()
   }
@@ -70,6 +72,13 @@ function onAddLine() {
 
 function onSetCurrLine({ dir }) {
   switchLine(+dir)
+  renderMeme()
+}
+
+function onRemoveLine() {
+  const { lines } = getMeme()
+  if (lines.length === 1) return // If there is only one line
+  removeLine()
   renderMeme()
 }
 

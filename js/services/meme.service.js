@@ -54,6 +54,22 @@ function switchLine(dir) {
   gMeme.selectedLineIdx += dir
 }
 
+function addLine() {
+  const newLine = _createLine()
+  gMeme.lines.push(newLine)
+  gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
+}
+
+function removeLine() {
+  const { lines } = getMeme()
+  const { id } = getCurrLine()
+
+  const lineIdx = gMeme.lines.findIndex(line => line.id === id)
+  if (lineIdx !== -1) gMeme.lines.splice(lineIdx, 1)
+
+  gMeme.selectedLineIdx = 0
+}
+
 function setCurrLine(lineId) {
   const { lines } = getMeme()
 
@@ -80,12 +96,6 @@ function decreaseTextSize() {
   const line = getCurrLine()
   line.size--
   if (line.size < 1) line.size = 1
-}
-
-function addLine() {
-  const newLine = _createLine()
-  gMeme.lines.push(newLine)
-  gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
 }
 
 function setLineWidth(newWidth) {
@@ -119,7 +129,7 @@ function _createLine() {
     txt: 'Enter your text',
     family: 'Impact',
     size: 20,
-    color: 'white',
+    color: 'black',
     x: 0,
     y: 0,
     width: 119.9609375,
