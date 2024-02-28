@@ -1,9 +1,13 @@
 .main-header {
-  font-size: 3rem;
-  padding: 1em;
+  padding: 2em;
+}
+
+.main-header .main-title {
+  font-size: 7em;
 }
 
 .main-header .main-nav-list {
+  font-size: 3em;
   gap: 1em;
 }
 
@@ -23,9 +27,10 @@
 }
 
 .main-header .btn-toggle-menu {
-  background-color: transparent;
-  border: none;
-  font-size: 1.5em;
-  color: var(--primary-2);
   display: none;
+  border: none;
+
+  background-color: transparent;
+  font-size: 3em;
+  color: var(--primary-2);
 }

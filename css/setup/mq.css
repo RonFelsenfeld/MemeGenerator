@@ -3,6 +3,10 @@
     display: block;
   }
 
+  .main-header .main-title {
+    font-size: 5em;
+  }
+
   .main-nav {
     position: fixed;
     top: 0;
