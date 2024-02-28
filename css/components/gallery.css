@@ -1,7 +1,20 @@
-.gallery {
+.gallery-section .btn-frenzy {
+  justify-self: end;
+  padding: 1em 2em;
+  border-radius: 2em;
+
+  background-color: rgb(91, 209, 248);
+  transition: var(--color-transition);
+}
+
+.gallery-section .btn-frenzy:hover {
+  background-color: rgb(30, 139, 175);
+}
+
+.gallery-section .gallery {
   gap: 3em;
 
-  padding: 10em 2em;
+  padding: 3em 2em;
   border-radius: var(--border-radius);
 
   background-color: var(--primary-1);

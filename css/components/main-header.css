@@ -13,7 +13,6 @@
 
 .main-nav-list .btn {
   padding: 1.5em;
-  border: none;
   border-radius: 2em;
 
   font-size: 0.6em;
@@ -28,7 +27,6 @@
 
 .main-header .btn-toggle-menu {
   display: none;
-  border: none;
 
   background-color: transparent;
   font-size: 3em;

@@ -27,8 +27,14 @@ function onImgSelect(imgId) {
   renderMeme()
 }
 
+function onRandomMeme() {
+  const imgs = getImgs()
+  const rndIdx = getRandomIntInclusive(1, imgs.length)
+  onImgSelect(rndIdx)
+}
+
 function hideGallery() {
-  const elGallery = document.querySelector('.gallery')
+  const elGallery = document.querySelector('.gallery-section')
   elGallery.style.display = 'none'
 }
 
