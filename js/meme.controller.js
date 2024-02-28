@@ -11,9 +11,9 @@ function renderMeme() {
 
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
-    const { txt, color } = getCurrLine()
+    const { txt, color, size } = getCurrLine()
 
-    gCtx.font = '40px Ariel'
+    gCtx.font = `${size}px Ariel`
     gCtx.fillStyle = `${color}`
     gCtx.fillText(txt, 100, 100)
   }
@@ -26,6 +26,15 @@ function onTextInput(txt) {
 
 function onChangeColor(color) {
   setLineColor(color)
+  renderMeme()
+}
+
+function onIncreaseFont() {
+  increaseTextSize()
+  renderMeme()
+}
+function onDecreaseFont() {
+  decreaseTextSize()
   renderMeme()
 }
 

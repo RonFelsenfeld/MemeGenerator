@@ -58,3 +58,13 @@ function setLineColor(color) {
   const line = getCurrLine()
   line.color = color
 }
+
+function increaseTextSize() {
+  const line = getCurrLine()
+  line.size++
+}
+
+function decreaseTextSize() {
+  const line = getCurrLine()
+  line.size--
+}
