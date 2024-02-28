@@ -11,31 +11,49 @@
   <body onload="onInit()">
     <header class="main-header">
       <h1>Meme Generator</h1>
+
+      <nav class="main-nav">
+        <ul class="main-nav-list flex clean-list">
+          <li><button class="btn">Gallery</button></li>
+          <li><button class="btn">Saved Memes</button></li>
+          <li><button class="btn">About</button></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-      <section class="gallery-section">
+      <section class="gallery-section main-layout">
         <div class="gallery"></div>
       </section>
 
-      <section class="editor-section hide">
-        <div class="editor">
-          <label for="text-input">Text</label>
-          <input
-            type="text"
-            name="text-input"
-            id="text-input"
-            oninput="onTextInput(this.value)"
-            autocomplete="off"
-          />
+      <section class="editor-section main-layout">
+        <div class="editor-container flex">
+          <div class="canvas-container">
+            <canvas class="main-canvas" width="500" height="500"></canvas>
+          </div>
 
-          <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg"
-            >Download Meme</a
-          >
-        </div>
+          <div class="editor">
+            <label for="text-input">Text</label>
+            <input
+              type="text"
+              name="text-input"
+              id="text-input"
+              oninput="onTextInput(this.value)"
+              autocomplete="off"
+            />
 
-        <div class="canvas-container">
-          <canvas class="main-canvas" width="500" height="500"></canvas>
+            <label for="color-input">Color</label>
+            <input
+              type="color"
+              name="color-input"
+              id="color-input"
+              onchange="onChangeColor(this.value)"
+            />
+
+            <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg"
+              >Download Meme</a
+            >
+          </div>
         </div>
       </section>
     </main>

@@ -5,21 +5,27 @@ let gCtx
 
 function renderMeme() {
   const { selectedImgId } = getMeme()
+
   const img = new Image()
   img.src = `img/${selectedImgId}.jpg`
 
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
+    const { txt, color } = getCurrLine()
 
-    const { txt } = getCurrLine()
     gCtx.font = '40px Ariel'
-    gCtx.fillStyle = 'white'
+    gCtx.fillStyle = `${color}`
     gCtx.fillText(txt, 100, 100)
   }
 }
 
 function onTextInput(txt) {
   setLineTxt(txt)
+  renderMeme()
+}
+
+function onChangeColor(color) {
+  setLineColor(color)
   renderMeme()
 }
 

@@ -29,7 +29,7 @@ let gMeme = {
     {
       txt: 'Enter your text',
       size: 20,
-      color: 'red',
+      color: 'black',
     },
   ],
 }
@@ -52,4 +52,9 @@ function getCurrLine() {
 
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
+}
+
+function setLineColor(color) {
+  const line = getCurrLine()
+  line.color = color
 }
