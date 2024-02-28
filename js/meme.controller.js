@@ -21,7 +21,7 @@ function renderMeme() {
 function renderText() {
   const { lines } = getMeme()
 
-  lines.forEach((line, idx) => {
+  lines.forEach(line => {
     gCtx.font = `${line.size}px Ariel`
     gCtx.fillStyle = `${line.color}`
     gCtx.textAlign = 'left'
@@ -33,6 +33,10 @@ function renderText() {
 
 function onTextInput(txt) {
   setLineTxt(txt)
+
+  const lineWidth = calcLineWidth()
+  setLineWidth(lineWidth)
+
   renderMeme()
 }
 
@@ -43,10 +47,18 @@ function onChangeColor(color) {
 
 function onIncreaseFont() {
   increaseTextSize()
+
+  const lineWidth = calcLineWidth()
+  setLineWidth(lineWidth)
+
   renderMeme()
 }
 function onDecreaseFont() {
   decreaseTextSize()
+
+  const lineWidth = calcLineWidth()
+  setLineWidth(lineWidth)
+
   renderMeme()
 }
 
@@ -57,7 +69,26 @@ function onAddLine() {
 }
 
 function onSetCurrLine({ dir }) {
-  setCurrLine(+dir)
+  switchLine(+dir)
+  renderMeme()
+}
+
+function onCanvasClicked(ev) {
+  const { offsetX, offsetY } = ev
+
+  const { lines } = getMeme()
+  const selectedLine = lines.find(line => {
+    const { x, y, width, size } = line
+
+    const isInXRange =
+      offsetX >= x - FRAME_PAD && offsetX <= x + width + FRAME_PAD
+    const isInYRange =
+      offsetY >= y - FRAME_PAD && offsetY <= y + size + FRAME_PAD
+
+    return isInXRange && isInYRange
+  })
+
+  if (selectedLine) setCurrLine(selectedLine.id)
   renderMeme()
 }
 
@@ -65,12 +96,7 @@ function onSetCurrLine({ dir }) {
 
 function highlightCurrLine() {
   const line = getCurrLine()
-  const { x, y, size } = line
-
-  gCtx.font = `${size}px Ariel`
-  const measureObj = gCtx.measureText(line.txt)
-  const { width } = measureObj
-
+  const { x, y, size, width } = line
   gCtx.beginPath()
   gCtx.lineWidth = 3
 
@@ -80,6 +106,15 @@ function highlightCurrLine() {
     width + 2 * FRAME_PAD,
     size + 2 * FRAME_PAD
   )
+}
+
+function calcLineWidth() {
+  const { txt, size } = getCurrLine()
+
+  gCtx.font = `${size}px Ariel`
+  const measureObj = gCtx.measureText(txt)
+
+  return measureObj.width
 }
 
 function onDownloadMeme(elLink) {

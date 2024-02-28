@@ -44,6 +44,23 @@ function getCurrLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+function switchLine(dir) {
+  // If selectedLine is the last one && dir is positive (trying to go next line)
+  if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) return
+
+  // If selectedLine is the first one && dir is negative (trying to go prev line)
+  if (gMeme.selectedLineIdx === 0 && dir < 0) return
+
+  gMeme.selectedLineIdx += dir
+}
+
+function setCurrLine(lineId) {
+  const { lines } = getMeme()
+
+  const lineIdx = lines.findIndex(line => line.id === lineId)
+  gMeme.selectedLineIdx = lineIdx
+}
+
 function setLineTxt(txt) {
   const line = getCurrLine()
   line.txt = txt
@@ -70,24 +87,21 @@ function addLine() {
   gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
 }
 
-function setCurrLine(dir) {
-  // If selectedLine is the last one && dir is positive (trying to go next line)
-  if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) return
-
-  // If selectedLine is the first one && dir is negative (trying to go prev line)
-  if (gMeme.selectedLineIdx === 0 && dir < 0) return
-
-  gMeme.selectedLineIdx += dir
+function setLineWidth(newWidth) {
+  const line = getCurrLine()
+  line.width = +newWidth
 }
 
 ////////////////////////////////////////////////////
 
 function _createLine() {
   return {
+    id: makeId(),
     txt: 'Enter your text',
     size: 20,
     color: 'black',
     x: 50,
     y: 50,
+    width: 119.9609375,
   }
 }

@@ -29,7 +29,12 @@
       <section class="editor-section main-layout">
         <div class="editor-container flex">
           <div class="canvas-container">
-            <canvas class="main-canvas" width="500" height="500"></canvas>
+            <canvas
+              class="main-canvas"
+              width="500"
+              height="500"
+              onclick="onCanvasClicked(event)"
+            ></canvas>
           </div>
 
           <div class="editor">
@@ -97,6 +102,7 @@
 
     <footer class="main-footer"></footer>
 
+    <script src="js/services/util.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
