@@ -1,5 +1,12 @@
 'use strict'
 
+function onInit() {
+  gElCanvas = document.querySelector('.main-canvas')
+  gCtx = gElCanvas.getContext('2d')
+
+  renderGallery()
+}
+
 function renderGallery() {
   const imgs = getImgs()
   const strHTMLs = imgs.map(
@@ -14,10 +21,16 @@ function renderGallery() {
 function onImgSelect(imgId) {
   setImg(+imgId)
   hideGallery()
+  showEditor()
   renderMeme()
 }
 
 function hideGallery() {
   const elGallery = document.querySelector('.gallery')
   elGallery.hidden = true
+}
+
+function showEditor() {
+  const elEditor = document.querySelector('.editor-section')
+  elEditor.classList.remove('hide')
 }

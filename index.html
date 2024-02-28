@@ -18,7 +18,7 @@
         <div class="gallery"></div>
       </section>
 
-      <section class="editor-section">
+      <section class="editor-section hide">
         <div class="editor">
           <label for="text-input">Text</label>
           <input
@@ -28,6 +28,10 @@
             oninput="onTextInput(this.value)"
             autocomplete="off"
           />
+
+          <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg"
+            >Download Meme</a
+          >
         </div>
 
         <div class="canvas-container">

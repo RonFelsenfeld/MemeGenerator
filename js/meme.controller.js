@@ -3,13 +3,6 @@
 let gElCanvas
 let gCtx
 
-function onInit() {
-  gElCanvas = document.querySelector('.main-canvas')
-  gCtx = gElCanvas.getContext('2d')
-
-  renderGallery()
-}
-
 function renderMeme() {
   const { selectedImgId } = getMeme()
   const img = new Image()
@@ -28,4 +21,9 @@ function renderMeme() {
 function onTextInput(txt) {
   setLineTxt(txt)
   renderMeme()
+}
+
+function onDownloadMeme(elLink) {
+  const content = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = content
 }

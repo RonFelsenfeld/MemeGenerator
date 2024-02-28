@@ -23,7 +23,7 @@ const IMGS = [
 ]
 
 let gMeme = {
-  selectedImgId: 0,
+  selectedImgId: 1, // ! Reset to 0 after working
   selectedLineIdx: 0,
   lines: [
     {
