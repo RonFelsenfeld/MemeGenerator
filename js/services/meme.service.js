@@ -23,7 +23,7 @@ const IMGS = [
 ]
 
 let gMeme = {
-  selectedImgId: 1,
+  selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [
     {
@@ -48,4 +48,8 @@ function setLineTxt(txt) {
 
 function getCurrLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
+}
+
+function setImg(imgId) {
+  gMeme.selectedImgId = imgId
 }

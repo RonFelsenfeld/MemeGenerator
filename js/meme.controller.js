@@ -6,8 +6,8 @@ let gCtx
 function onInit() {
   gElCanvas = document.querySelector('.main-canvas')
   gCtx = gElCanvas.getContext('2d')
+
   renderGallery()
-  // renderMeme()
 }
 
 function renderMeme() {
