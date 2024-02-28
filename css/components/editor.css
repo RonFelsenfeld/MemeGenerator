@@ -110,3 +110,47 @@
 .editor .font-family-select {
   min-width: 7em;
 }
+
+/* //////////////////////////////////////////////////// */
+
+/* File Options */
+
+.file-options {
+  width: 100%;
+}
+
+.file-options .btn-file-action {
+  padding: 1em;
+  border-radius: 2em;
+
+  transition: background-color var(--color-transition),
+    transform var(--scale-transition);
+
+  box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.357);
+  font-weight: bold;
+}
+
+.file-options .btn-file-action:hover {
+  transform: scale(1.1);
+}
+
+.btn-file-action a,
+.btn-file-action a:visited {
+  color: black;
+}
+
+.file-options .link-download {
+  background-color: rgb(156, 156, 255);
+}
+
+.file-options .link-download:hover {
+  background-color: rgb(66, 66, 227);
+}
+
+.file-options .btn-save {
+  background-color: rgb(94, 155, 239);
+}
+
+.file-options .btn-save:hover {
+  background-color: rgb(49, 134, 253);
+}

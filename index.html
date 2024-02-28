@@ -70,7 +70,7 @@
                 class="btn btn-switch-line"
                 data-dir="1"
                 title="Next line"
-                onclick="onSetCurrLine(this.dataset)"
+                onclick="onSwitchLine(this.dataset)"
               >
                 <img src="img/arrow-down.png" alt="Arrow down" />
               </button>
@@ -79,7 +79,7 @@
                 class="btn btn-switch-line"
                 data-dir="-1"
                 title="Previous line"
-                onclick="onSetCurrLine(this.dataset)"
+                onclick="onSwitchLine(this.dataset)"
               >
                 <img src="img/arrow-up.png" alt="Arrow up" />
               </button>
@@ -161,10 +161,19 @@
               />
             </div>
 
-            <div class="file-options">
-              <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg"
-                >Download Meme</a
-              >
+            <div class="file-options flex space-around">
+              <button class="btn-file-action link-download">
+                <a
+                  href="#"
+                  onclick="onDownloadMeme(this)"
+                  download="my-meme.jpg"
+                  >Download Meme</a
+                >
+              </button>
+
+              <button class="btn-file-action btn-save" onclick="onSaveMeme()">
+                Save Meme
+              </button>
             </div>
           </div>
         </div>
@@ -174,6 +183,7 @@
     <!-- ? Add footer -->
 
     <script src="js/services/util.service.js"></script>
+    <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/gallery.controller.js"></script>

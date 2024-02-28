@@ -55,6 +55,7 @@ function onIncreaseFont() {
 
   renderMeme()
 }
+
 function onDecreaseFont() {
   decreaseTextSize()
 
@@ -70,7 +71,7 @@ function onAddLine() {
   renderMeme()
 }
 
-function onSetCurrLine({ dir }) {
+function onSwitchLine({ dir }) {
   switchLine(+dir)
   renderMeme()
 }
@@ -79,25 +80,6 @@ function onRemoveLine() {
   const { lines } = getMeme()
   if (lines.length === 1) return // If there is only one line
   removeLine()
-  renderMeme()
-}
-
-function onCanvasClicked(ev) {
-  const { offsetX, offsetY } = ev
-
-  const { lines } = getMeme()
-  const selectedLine = lines.find(line => {
-    const { x, y, width, size } = line
-
-    const isInXRange =
-      offsetX >= x - FRAME_PAD && offsetX <= x + width + FRAME_PAD
-    const isInYRange =
-      offsetY >= y - FRAME_PAD && offsetY <= y + size + FRAME_PAD
-
-    return isInXRange && isInYRange
-  })
-
-  if (selectedLine) setCurrLine(selectedLine.id)
   renderMeme()
 }
 
@@ -121,7 +103,62 @@ function onMoveLine({ dir }) {
   renderMeme()
 }
 
+function onCanvasClicked(ev) {
+  const { offsetX, offsetY } = ev
+
+  const { lines } = getMeme()
+  const selectedLine = lines.find(line => {
+    const { x, y, width, size } = line
+
+    const isInXRange =
+      offsetX >= x - FRAME_PAD && offsetX <= x + width + FRAME_PAD
+    const isInYRange =
+      offsetY >= y - FRAME_PAD && offsetY <= y + size + FRAME_PAD
+
+    return isInXRange && isInYRange
+  })
+
+  if (selectedLine) setCurrLine(selectedLine.id)
+  renderMeme()
+}
+
 ////////////////////////////////////////////////////
+
+function onDownloadMeme(elLink) {
+  const content = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = content
+}
+
+function onSaveMeme() {
+  saveMeme()
+  // todo saveMeme()
+  // todo showMsg
+}
+
+////////////////////////////////////////////////////
+
+function highlightCurrLine() {
+  const line = getCurrLine()
+  const { x, y, size, width } = line
+  gCtx.beginPath()
+  gCtx.lineWidth = 3
+
+  gCtx.strokeRect(
+    x - FRAME_PAD,
+    y - FRAME_PAD,
+    width + 2 * FRAME_PAD,
+    size + 2 * FRAME_PAD
+  )
+}
+
+function calcLineWidth() {
+  const { txt, family, size } = getCurrLine()
+
+  gCtx.font = `${size}px ${family}`
+  const measureObj = gCtx.measureText(txt)
+
+  return measureObj.width
+}
 
 function getAlignmentPos(alignment) {
   let pos
@@ -157,34 +194,6 @@ function calcAlignmentRight() {
 }
 
 ////////////////////////////////////////////////////
-
-function highlightCurrLine() {
-  const line = getCurrLine()
-  const { x, y, size, width } = line
-  gCtx.beginPath()
-  gCtx.lineWidth = 3
-
-  gCtx.strokeRect(
-    x - FRAME_PAD,
-    y - FRAME_PAD,
-    width + 2 * FRAME_PAD,
-    size + 2 * FRAME_PAD
-  )
-}
-
-function calcLineWidth() {
-  const { txt, family, size } = getCurrLine()
-
-  gCtx.font = `${size}px ${family}`
-  const measureObj = gCtx.measureText(txt)
-
-  return measureObj.width
-}
-
-function onDownloadMeme(elLink) {
-  const content = gElCanvas.toDataURL('image/jpeg')
-  elLink.href = content
-}
 
 function onClearInput() {
   const elTextInput = document.querySelector('.text-input')

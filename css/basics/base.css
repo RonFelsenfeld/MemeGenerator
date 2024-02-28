@@ -34,6 +34,5 @@ img {
 
 a,
 a:visited {
-  color: var(--primary-2);
   text-decoration: none;
 }

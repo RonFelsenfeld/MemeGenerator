@@ -23,7 +23,8 @@ const IMGS = [
 ]
 
 let gMeme = {
-  selectedImgId: 0,
+  id: makeId(),
+  selectedImgId: 1, // ! Change to 0
   selectedLineIdx: 0,
   lines: [_createLine()],
 }
@@ -44,6 +45,7 @@ function getCurrLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+// Works on direction (next/previous)
 function switchLine(dir) {
   // If selectedLine is the last one && dir is positive (trying to go next line)
   if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) return
@@ -52,6 +54,14 @@ function switchLine(dir) {
   if (gMeme.selectedLineIdx === 0 && dir < 0) return
 
   gMeme.selectedLineIdx += dir
+}
+
+// Works on direct click on line
+function setCurrLine(lineId) {
+  const { lines } = getMeme()
+
+  const lineIdx = lines.findIndex(line => line.id === lineId)
+  gMeme.selectedLineIdx = lineIdx
 }
 
 function addLine() {
@@ -68,13 +78,6 @@ function removeLine() {
   if (lineIdx !== -1) gMeme.lines.splice(lineIdx, 1)
 
   gMeme.selectedLineIdx = 0
-}
-
-function setCurrLine(lineId) {
-  const { lines } = getMeme()
-
-  const lineIdx = lines.findIndex(line => line.id === lineId)
-  gMeme.selectedLineIdx = lineIdx
 }
 
 function setLineTxt(txt) {
@@ -121,6 +124,10 @@ function moveLine(dir) {
   // Maybe the user wants to hide part of it
 }
 
+function saveMeme() {
+  _saveMemeToStorage()
+}
+
 ////////////////////////////////////////////////////
 
 function _createLine() {
@@ -134,4 +141,8 @@ function _createLine() {
     y: 0,
     width: 119.9609375,
   }
+}
+
+function _saveMemeToStorage() {
+  saveToStorage(gMeme.id, gMeme)
 }
