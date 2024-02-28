@@ -1,15 +1,20 @@
-.main-canvas {
-  border: 2px solid black;
-}
-
 .editor-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: auto 1fr;
   column-gap: 2em;
 
   padding: 3em;
   border-radius: var(--border-radius);
   background-color: var(--primary-1);
+}
+
+.canvas-container {
+  width: 100%;
+  justify-content: center;
+}
+
+.main-canvas {
+  border: 2px solid black;
 }
 
 .editor {
