@@ -19,5 +19,5 @@
 
 .main-nav-list .btn.selected {
   color: var(--primary-base);
-  background-color: var(--primary-1);
+  background-color: var(--primary-2);
 }

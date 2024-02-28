@@ -9,4 +9,5 @@
 
 /* Import Components */
 @import url(components/main-header.css);
+@import url(components/gallery.css);
 @import url(components/editor.css);

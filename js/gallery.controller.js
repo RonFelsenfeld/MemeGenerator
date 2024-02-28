@@ -12,7 +12,7 @@ function renderGallery() {
   const imgs = getImgs()
   const strHTMLs = imgs.map(
     img =>
-      `<img src="img/${img.id}.jpg" alt="img${img.id}" onclick="onImgSelect('${img.id}')" />`
+      `<img src="img/${img.id}.jpg" alt="img${img.id}" class="gallery-img" onclick="onImgSelect('${img.id}')" />`
   )
 
   const elGallery = document.querySelector('.gallery')

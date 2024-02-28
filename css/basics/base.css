@@ -7,7 +7,7 @@
 html {
   /* Setting root font size to 10px */
   font-size: 0.625rem;
-  color: var(--primary-1);
+  color: var(--primary-2);
   background-color: var(--primary-base);
 }
 
@@ -33,6 +33,6 @@ img {
 
 a,
 a:visited {
-  color: var(--primary-1);
+  color: var(--primary-2);
   text-decoration: none;
 }
