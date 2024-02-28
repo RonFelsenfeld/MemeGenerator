@@ -1,3 +1,13 @@
 .hide {
   display: none;
 }
+
+.flex {
+  display: flex;
+}
+
+.clean-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

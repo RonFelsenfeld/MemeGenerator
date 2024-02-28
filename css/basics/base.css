@@ -4,14 +4,33 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Setting root font size to 10px */
+  font-size: 0.625rem;
+  color: var(--primary-1);
+  background-color: var(--primary-base);
+}
+
+body {
+  margin: 0;
+}
+
 h1,
 h2,
-h3,
-h4,
-h5,
-h6,
 p,
 a {
   margin: 0;
   padding: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
 }

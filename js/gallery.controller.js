@@ -27,7 +27,7 @@ function onImgSelect(imgId) {
 
 function hideGallery() {
   const elGallery = document.querySelector('.gallery')
-  elGallery.hidden = true
+  elGallery.style.display = 'none' // Could not use .hide (gallery set to grid)
 }
 
 function showEditor() {
