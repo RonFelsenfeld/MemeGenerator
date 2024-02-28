@@ -23,7 +23,7 @@ const IMGS = [
 ]
 
 let gMeme = {
-  selectedImgId: 1, // ! Reset to 0 after working
+  selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [_createLine()],
 }
@@ -36,16 +36,17 @@ function getImgs() {
   return IMGS
 }
 
-function setLineTxt(txt) {
-  gMeme.lines[gMeme.selectedLineIdx].txt = txt
+function setImg(imgId) {
+  gMeme.selectedImgId = imgId
 }
 
 function getCurrLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
 }
 
-function setImg(imgId) {
-  gMeme.selectedImgId = imgId
+function setLineTxt(txt) {
+  const line = getCurrLine()
+  line.txt = txt
 }
 
 function setLineColor(color) {
@@ -69,9 +70,12 @@ function addLine() {
   gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
 }
 
-function SetCurrLine(dir) {
+function setCurrLine(dir) {
   // If selectedLine is the last one && dir is positive (trying to go next line)
   if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) return
+
+  // If selectedLine is the first one && dir is negative (trying to go prev line)
+  if (gMeme.selectedLineIdx === 0 && dir < 0) return
 
   gMeme.selectedLineIdx += dir
 }
@@ -83,5 +87,7 @@ function _createLine() {
     txt: 'Enter your text',
     size: 20,
     color: 'black',
+    x: 50,
+    y: 50,
   }
 }

@@ -1,5 +1,7 @@
 'use strict'
 
+const FRAME_PAD = 10
+
 let gElCanvas
 let gCtx
 
@@ -12,6 +14,7 @@ function renderMeme() {
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
     renderText()
+    highlightCurrLine()
   }
 }
 
@@ -21,7 +24,10 @@ function renderText() {
   lines.forEach((line, idx) => {
     gCtx.font = `${line.size}px Ariel`
     gCtx.fillStyle = `${line.color}`
-    gCtx.fillText(line.txt, 30 * (idx + 1), 30 * (idx + 1))
+    gCtx.textAlign = 'left'
+    gCtx.textBaseline = 'top'
+
+    gCtx.fillText(line.txt, line.x, line.y)
   })
 }
 
@@ -51,10 +57,30 @@ function onAddLine() {
 }
 
 function onSetCurrLine({ dir }) {
-  SetCurrLine(+dir)
+  setCurrLine(+dir)
+  renderMeme()
 }
 
 ////////////////////////////////////////////////////
+
+function highlightCurrLine() {
+  const line = getCurrLine()
+  const { x, y, size } = line
+
+  gCtx.font = `${size}px Ariel`
+  const measureObj = gCtx.measureText(line.txt)
+  const { width } = measureObj
+
+  gCtx.beginPath()
+  gCtx.lineWidth = 3
+
+  gCtx.strokeRect(
+    x - FRAME_PAD,
+    y - FRAME_PAD,
+    width + 2 * FRAME_PAD,
+    size + 2 * FRAME_PAD
+  )
+}
 
 function onDownloadMeme(elLink) {
   const content = gElCanvas.toDataURL('image/jpeg')
