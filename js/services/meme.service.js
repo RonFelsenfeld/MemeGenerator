@@ -15,3 +15,11 @@ let gMeme = {
 function getMeme() {
   return gMeme
 }
+
+function setLineTxt(txt) {
+  gMeme.lines[gMeme.selectedLineIdx].txt = txt
+}
+
+function getCurrLine() {
+  return gMeme.lines[gMeme.selectedLineIdx]
+}

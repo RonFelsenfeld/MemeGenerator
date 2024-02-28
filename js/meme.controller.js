@@ -17,8 +17,14 @@ function renderMeme() {
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
 
+    const { txt } = getCurrLine()
     gCtx.font = '40px Ariel'
     gCtx.fillStyle = 'white'
-    gCtx.fillText('MY TEXT', 100, 100)
+    gCtx.fillText(txt, 100, 100)
   }
+}
+
+function onTextInput(txt) {
+  setLineTxt(txt)
+  renderMeme()
 }

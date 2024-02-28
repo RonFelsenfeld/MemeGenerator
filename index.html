@@ -17,7 +17,20 @@
       <section class="gallery-section"></section>
 
       <section class="editor-section">
-        <canvas class="main-canvas" width="500" height="500"></canvas>
+        <div class="editor">
+          <label for="text-input">Text</label>
+          <input
+            type="text"
+            name="text-input"
+            id="text-input"
+            oninput="onTextInput(this.value)"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="canvas-container">
+          <canvas class="main-canvas" width="500" height="500"></canvas>
+        </div>
       </section>
     </main>
 
