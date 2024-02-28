@@ -25,13 +25,7 @@ const IMGS = [
 let gMeme = {
   selectedImgId: 1, // ! Reset to 0 after working
   selectedLineIdx: 0,
-  lines: [
-    {
-      txt: 'Enter your text',
-      size: 20,
-      color: 'black',
-    },
-  ],
+  lines: [_createLine()],
 }
 
 function getMeme() {
@@ -67,4 +61,20 @@ function increaseTextSize() {
 function decreaseTextSize() {
   const line = getCurrLine()
   line.size--
+}
+
+function addLine() {
+  const newLine = _createLine()
+  gMeme.lines.push(newLine)
+  gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
+}
+
+////////////////////////////////////////////////////
+
+function _createLine() {
+  return {
+    txt: 'Enter your text',
+    size: 20,
+    color: 'black',
+  }
 }

@@ -11,12 +11,18 @@ function renderMeme() {
 
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
-    const { txt, color, size } = getCurrLine()
-
-    gCtx.font = `${size}px Ariel`
-    gCtx.fillStyle = `${color}`
-    gCtx.fillText(txt, 100, 100)
+    renderText()
   }
+}
+
+function renderText() {
+  const { lines } = getMeme()
+
+  lines.forEach((line, idx) => {
+    gCtx.font = `${line.size}px Ariel`
+    gCtx.fillStyle = `${line.color}`
+    gCtx.fillText(line.txt, 30 * (idx + 1), 30 * (idx + 1))
+  })
 }
 
 function onTextInput(txt) {
@@ -38,7 +44,18 @@ function onDecreaseFont() {
   renderMeme()
 }
 
+function onAddLine() {
+  addLine()
+  onClearInput()
+  renderMeme()
+}
+
 function onDownloadMeme(elLink) {
   const content = gElCanvas.toDataURL('image/jpeg')
   elLink.href = content
+}
+
+function onClearInput() {
+  const elTextInput = document.querySelector('.text-input')
+  elTextInput.value = ''
 }

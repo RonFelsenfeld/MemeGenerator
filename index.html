@@ -33,34 +33,47 @@
           </div>
 
           <div class="editor">
-            <label for="text-input">Text</label>
-            <input
-              type="text"
-              name="text-input"
-              id="text-input"
-              oninput="onTextInput(this.value)"
-              autocomplete="off"
-            />
+            <div class="input-area">
+              <label for="text-input">Text</label>
+              <input
+                type="text"
+                name="text-input"
+                id="text-input"
+                class="text-input"
+                oninput="onTextInput(this.value)"
+                autocomplete="off"
+              />
+              <button class="btn btn-clear" onclick="onClearInput()">
+                Clear
+              </button>
+            </div>
 
-            <label for="color-input">Color</label>
-            <input
-              type="color"
-              name="color-input"
-              id="color-input"
-              onchange="onChangeColor(this.value)"
-            />
+            <div class="text-editor">
+              <button class="btn btn-font-inc" onclick="onIncreaseFont()">
+                <img src="img/increase.png" alt="Increase font size" />
+              </button>
 
-            <button class="btn btn-font-inc" onclick="onIncreaseFont()">
-              <img src="img/increase.png" alt="Increase font size" />
-            </button>
+              <button class="btn btn-font-dec" onclick="onDecreaseFont()">
+                <img src="img/decrease.png" alt="Decrease font size" />
+              </button>
 
-            <button class="btn btn-font-dec" onclick="onDecreaseFont()">
-              <img src="img/decrease.png" alt="Decrease font size" />
-            </button>
+              <button class="btn btn-font-dec" onclick="onAddLine()">
+                <img src="img/add-line.png" alt="Add line" />
+              </button>
 
-            <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg"
-              >Download Meme</a
-            >
+              <input
+                type="color"
+                name="color-input"
+                id="color-input"
+                onchange="onChangeColor(this.value)"
+              />
+            </div>
+
+            <div class="file-options">
+              <a href="#" onclick="onDownloadMeme(this)" download="my-meme.jpg"
+                >Download Meme</a
+              >
+            </div>
           </div>
         </div>
       </section>
