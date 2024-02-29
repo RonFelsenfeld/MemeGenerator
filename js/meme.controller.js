@@ -3,6 +3,8 @@
 const FRAME_PAD = 10
 
 let gIsSaving = false
+let gUploadedImg = null
+
 let gElCanvas
 let gCtx
 
@@ -10,7 +12,8 @@ function renderMeme() {
   const { selectedImgId, lines } = getMeme()
 
   const img = new Image()
-  img.src = `img/${selectedImgId}.jpg`
+  // If there is uploaded img --> use it
+  img.src = gUploadedImg ? gUploadedImg.src : `img/${selectedImgId}.jpg`
 
   img.onload = () => {
     gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)

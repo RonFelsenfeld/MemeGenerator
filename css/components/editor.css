@@ -96,8 +96,19 @@
 /* Text Editor */
 
 .editor .text-editor {
-  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
   gap: 2em;
+}
+
+.text-editor .editor-text-row {
+  align-items: center;
+  gap: 2em;
+  width: 100%;
+}
+
+.text-editor .editor-text-row > * {
+  flex-grow: 1;
 }
 
 .text-editor .btn {
@@ -109,8 +120,11 @@
 }
 
 .editor .font-family-select {
-  min-width: 7em;
-  flex-grow: 1;
+  min-width: 8em;
+}
+
+.text-editor .btn-row img {
+  width: 2em;
 }
 
 /* //////////////////////////////////////////////////// */

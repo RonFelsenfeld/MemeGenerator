@@ -64,6 +64,8 @@
             </button>
           </div>
 
+          <ul class="keywords-container clean-list flex align-center"></ul>
+
           <button class="btn btn-frenzy" onclick="onRandomMeme()">
             Frenzy
           </button>
@@ -126,72 +128,76 @@
               </button>
             </div>
 
-            <div class="text-editor flex align-center">
-              <button class="btn btn-font-inc" onclick="onIncreaseFont()">
-                <img src="img/increase.png" alt="Increase font size" />
-              </button>
+            <div class="text-editor flex">
+              <div class="flex space-between">
+                <button class="btn btn-font-inc" onclick="onIncreaseFont()">
+                  <img src="img/increase.png" alt="Increase font size" />
+                </button>
 
-              <button class="btn btn-font-dec" onclick="onDecreaseFont()">
-                <img src="img/decrease.png" alt="Decrease font size" />
-              </button>
+                <button class="btn btn-font-dec" onclick="onDecreaseFont()">
+                  <img src="img/decrease.png" alt="Decrease font size" />
+                </button>
 
-              <button
-                class="btn btn-align-left"
-                data-alignment="left"
-                onclick="onSetAlignment(this.dataset)"
-              >
-                <img src="img/align-to-left.png" alt="Align to left" />
-              </button>
+                <button
+                  class="btn btn-align-left"
+                  data-alignment="left"
+                  onclick="onSetAlignment(this.dataset)"
+                >
+                  <img src="img/align-to-left.png" alt="Align to left" />
+                </button>
 
-              <button
-                class="btn btn-align-center"
-                data-alignment="center"
-                onclick="onSetAlignment(this.dataset)"
-              >
-                <img src="img/align-to-center.png" alt="Align to center" />
-              </button>
+                <button
+                  class="btn btn-align-center"
+                  data-alignment="center"
+                  onclick="onSetAlignment(this.dataset)"
+                >
+                  <img src="img/align-to-center.png" alt="Align to center" />
+                </button>
 
-              <button
-                class="btn btn-align-right"
-                data-alignment="right"
-                onclick="onSetAlignment(this.dataset)"
-              >
-                <img src="img/align-to-right.png" alt="Align to right" />
-              </button>
+                <button
+                  class="btn btn-align-right"
+                  data-alignment="right"
+                  onclick="onSetAlignment(this.dataset)"
+                >
+                  <img src="img/align-to-right.png" alt="Align to right" />
+                </button>
+              </div>
 
-              <button
-                class="btn btn-move-up"
-                data-dir="-1"
-                onclick="onMoveLine(this.dataset)"
-              >
-                Up
-              </button>
+              <div class="editor-text-row flex">
+                <select
+                  class="btn font-family-select"
+                  onchange="onChangeFontFamily(this.value)"
+                >
+                  <option value="Impact">Impact</option>
+                  <option value="Arial">Arial</option>
+                  <option value="Verdana">Verdana</option>
+                  <option value="serif">serif</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                </select>
 
-              <button
-                class="btn btn-move-down"
-                data-dir="1"
-                onclick="onMoveLine(this.dataset)"
-              >
-                Down
-              </button>
+                <button
+                  class="btn btn-row"
+                  data-dir="-1"
+                  onclick="onMoveLine(this.dataset)"
+                >
+                  <img src="img/row-up.png" alt="Row up" />
+                </button>
 
-              <select
-                class="btn font-family-select"
-                onchange="onChangeFontFamily(this.value)"
-              >
-                <option value="Impact">Impact</option>
-                <option value="Arial">Arial</option>
-                <option value="Verdana">Verdana</option>
-                <option value="serif">serif</option>
-                <option value="Times New Roman">Times New Roman</option>
-              </select>
+                <button
+                  class="btn btn-row"
+                  data-dir="1"
+                  onclick="onMoveLine(this.dataset)"
+                >
+                  <img src="img/row-down.png" alt="Row down" />
+                </button>
 
-              <input
-                type="color"
-                name="color-input"
-                id="color-input"
-                onchange="onChangeColor(this.value)"
-              />
+                <input
+                  type="color"
+                  name="color-input"
+                  id="color-input"
+                  onchange="onChangeColor(this.value)"
+                />
+              </div>
             </div>
 
             <div class="stickers flex align-center space-around">

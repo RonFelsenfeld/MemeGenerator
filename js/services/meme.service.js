@@ -1,8 +1,8 @@
 'use strict'
 
 const SAVED_KEY = 'memesDB'
-let gId = 1
 
+let gId = 1
 const gIMGS = [
   { id: gId++, url: 'img/1.jpg', keywords: ['funny'] },
   { id: gId++, url: 'img/2.jpg', keywords: ['cute', 'animal'] },
@@ -23,17 +23,28 @@ const gIMGS = [
   { id: gId++, url: 'img/17.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
 ]
+
 const gSavesMemes = loadFromStorage(SAVED_KEY) || []
+const gKeywordsSearchCountMap = {
+  Funny: 0,
+  Cute: 0,
+  Animal: 0,
+  Baby: 0,
+  Smile: 0,
+  Men: 0,
+}
 
 let gFilterBy = ''
 let gIsDrag = false
 
 let gMeme = {
   id: makeId(), // Will be the key when saving to storage
-  selectedImgId: 2,
+  selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [_createLine()],
 }
+
+////////////////////////////////////////////////////
 
 function getMeme() {
   return gMeme
@@ -42,6 +53,10 @@ function getMeme() {
 function getImgs() {
   if (!gFilterBy) return gIMGS
   return _filterImgs()
+}
+
+function getKeywords() {
+  return gKeywordsSearchCountMap
 }
 
 function getSavedMemes() {
@@ -63,13 +78,17 @@ function setImg(imgId) {
 }
 
 function setFilterBy(filterBy) {
-  gFilterBy = filterBy
+  gFilterBy = filterBy.toLowerCase()
 }
 
 function editMeme(memeId) {
   const loadedMeme = gSavesMemes.find(savedMeme => savedMeme.meme.id === memeId)
-
   gMeme = loadedMeme.meme
+}
+
+function increaseKeywordCount(keyword) {
+  if (gKeywordsSearchCountMap[keyword] === 20) return // Limit
+  gKeywordsSearchCountMap[keyword]++
 }
 
 ////////////////////////////////////////////////////
@@ -205,7 +224,7 @@ function _createLine() {
 function _filterImgs() {
   const filteredImgs = gIMGS.filter(img => {
     const { keywords } = img
-    return keywords.some(word => word.includes(gFilterBy.toLowerCase()))
+    return keywords.some(word => word.includes(gFilterBy))
   })
 
   return filteredImgs

@@ -4,10 +4,11 @@ function onInit() {
   gElCanvas = document.querySelector('.main-canvas')
   gCtx = gElCanvas.getContext('2d')
 
-  renderMeme()
-  // hideEditor()
+  hideEditor()
   hideSavedMemes()
-  // renderGallery()
+
+  renderKeywords()
+  renderGallery()
 }
 
 function renderGallery() {
@@ -17,19 +18,54 @@ function renderGallery() {
       `<img src="img/${img.id}.jpg" alt="img${img.id}" class="gallery-img" onclick="onImgSelect('${img.id}')" />`
   )
 
+  // Uploading img HTML
+  const uploadHTMLstr = `
+  <div class=upload-container>
+    <img src="img/upload.png" alt="upload img" class="gallery-img upload-img" onclick="onUploadImg()" />
+    <label for="file-input">File</label>
+    <input type="file" class="file-input btn" id="file-input" name="image" onchange="onUploadImg(event)" accept="image/*"/>
+  </div>`
+  strHTMLs.unshift(uploadHTMLstr)
+
   showGallery()
   const elGallery = document.querySelector('.gallery')
   elGallery.innerHTML = strHTMLs.join('')
 }
 
+function renderKeywords() {
+  const keywordsMap = getKeywords()
+  let strHTML = ''
+
+  for (const keyword in keywordsMap) {
+    // If keywordsCount = 0 --> size = 10
+    // Else --> size = keywordCount + 10
+    const keywordSize = !keywordsMap[keyword] ? 10 : keywordsMap[keyword] + 10
+
+    strHTML += `<li class="keyword" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${keyword}</li>`
+  }
+
+  const elKeywordsContainer = document.querySelector('.keywords-container')
+  elKeywordsContainer.innerHTML = strHTML
+}
+
 ////////////////////////////////////////////////////
 
 function onGallery() {
+  gUploadedImg = null
   hideEditor()
   hideSavedMemes()
 
   showGallery()
   renderGallery()
+}
+
+function onSavedMemes() {
+  gUploadedImg = null
+  hideEditor()
+  hideGallery()
+
+  showSavedMemes()
+  renderSavedMemes()
 }
 
 function onImgSelect(imgId) {
@@ -40,12 +76,14 @@ function onImgSelect(imgId) {
   renderMeme()
 }
 
-function onSavedMemes() {
-  hideEditor()
-  hideGallery()
+function onUploadImg(ev) {
+  loadImageFromInput(ev, img => {
+    gUploadedImg = img
 
-  showSavedMemes()
-  renderSavedMemes()
+    hideGallery()
+    showEditor()
+    renderMeme()
+  })
 }
 
 function onRandomMeme() {
@@ -57,6 +95,16 @@ function onRandomMeme() {
 function onSetFilter(filterBy) {
   setFilterBy(filterBy)
   renderGallery()
+}
+
+function onSearchByKeyword(keyword) {
+  increaseKeywordCount(keyword)
+  setFilterBy(keyword)
+
+  const elFilterInput = document.querySelector('.filter-input')
+  elFilterInput.value = keyword
+  renderGallery()
+  renderKeywords()
 }
 
 function onClearFilter() {
@@ -117,4 +165,15 @@ function highlightCurrSection(elBtn) {
 
   // If elBtn is undefined --> only remove highlight from links
   if (elBtn) elBtn.classList.add('selected')
+}
+
+function loadImageFromInput(ev, onImageReady) {
+  const reader = new FileReader()
+
+  reader.onload = ev => {
+    let img = new Image()
+    img.src = ev.target.result
+    img.onload = () => onImageReady(img)
+  }
+  reader.readAsDataURL(ev.target.files[0])
 }
