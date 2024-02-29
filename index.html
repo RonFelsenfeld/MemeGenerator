@@ -17,7 +17,9 @@
       <nav class="main-nav">
         <ul class="main-nav-list flex clean-list">
           <li><button class="btn" onclick="onInit()">Gallery</button></li>
-          <li><button class="btn">Saved Memes</button></li>
+          <li>
+            <button class="btn" onclick="onSavedMemes()">Saved Memes</button>
+          </li>
           <li><button class="btn">About</button></li>
         </ul>
       </nav>
@@ -178,6 +180,10 @@
           </div>
         </div>
       </section>
+
+      <section class="saved-memes-section main-layout">
+        <div class="saved-memes"></div>
+      </section>
     </main>
 
     <!-- ? Add footer -->
@@ -185,6 +191,7 @@
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/meme.service.js"></script>
+    <script src="js/saved-memes.controller.js"></script>
     <script src="js/meme.controller.js"></script>
     <script src="js/gallery.controller.js"></script>
   </body>

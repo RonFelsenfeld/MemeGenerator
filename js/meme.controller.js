@@ -125,13 +125,13 @@ function onCanvasClicked(ev) {
 ////////////////////////////////////////////////////
 
 function onDownloadMeme(elLink) {
-  const content = gElCanvas.toDataURL('image/jpeg')
-  elLink.href = content
+  const dataURL = gElCanvas.toDataURL('image/jpeg')
+  elLink.href = dataURL
 }
 
 function onSaveMeme() {
-  saveMeme()
-  // todo saveMeme()
+  const dataURL = gElCanvas.toDataURL('image/jpeg')
+  saveMeme(dataURL)
   // todo showMsg
 }
 
@@ -161,22 +161,20 @@ function calcLineWidth() {
 }
 
 function getAlignmentPos(alignment) {
-  let pos
-
-  switch (alignment) {
-    case 'left':
-      // If left --> stick to the left + FRAME_PAD
-      pos = 0 + FRAME_PAD
-      break
-    case 'center':
-      pos = calcAlignmentCenter()
-      break
-    case 'right':
-      pos = calcAlignmentRight()
-      break
+  const options = {
+    left: calcAlignmentLeft,
+    center: calcAlignmentCenter,
+    right: calcAlignmentRight,
   }
 
+  const calcAlignment = options[alignment]
+  const pos = calcAlignment()
+
   return pos
+}
+
+function calcAlignmentLeft() {
+  return 0 + FRAME_PAD
 }
 
 function calcAlignmentCenter() {

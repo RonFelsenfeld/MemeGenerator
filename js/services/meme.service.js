@@ -22,9 +22,11 @@ const IMGS = [
   { id: gId++, url: 'img/18.jpg', keywords: ['sad'] },
 ]
 
+const gSavesMemes = []
+
 let gMeme = {
-  id: makeId(),
-  selectedImgId: 1, // ! Change to 0
+  id: makeId(), // Will be the key when saving to storage
+  selectedImgId: 0,
   selectedLineIdx: 0,
   lines: [_createLine()],
 }
@@ -37,8 +39,19 @@ function getImgs() {
   return IMGS
 }
 
+function getSavedMemes() {
+  return gSavesMemes
+}
+
+////////////////////////////////////////////////////
+
 function setImg(imgId) {
   gMeme.selectedImgId = imgId
+}
+
+function editMeme(memeId) {
+  const loadedMeme = loadFromStorage(memeId)
+  gMeme = loadedMeme
 }
 
 function getCurrLine() {
@@ -124,8 +137,19 @@ function moveLine(dir) {
   // Maybe the user wants to hide part of it
 }
 
-function saveMeme() {
+function saveMeme(dataURL) {
   _saveMemeToStorage()
+
+  const memeToSave = {
+    id: gMeme.id,
+    url: dataURL,
+  }
+
+  // If the meme is already saved --> change it's url
+  const previousVersion = gSavesMemes.find(meme => meme.id === memeToSave.id)
+  if (previousVersion) previousVersion.url = dataURL
+  // Else --> save a new meme
+  else gSavesMemes.push(memeToSave)
 }
 
 ////////////////////////////////////////////////////
@@ -139,7 +163,7 @@ function _createLine() {
     color: 'black',
     x: 0,
     y: 0,
-    width: 119.9609375,
+    width: 119.9609375, // Hard coded witdh off the current txt at the current size
   }
 }
 

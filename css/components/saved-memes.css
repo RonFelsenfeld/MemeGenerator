@@ -1,0 +1,8 @@
+.saved-memes-section .saved-memes {
+  gap: 4em;
+  margin-block: 4em;
+}
+
+.saved-memes .saved-meme {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.211);
+}

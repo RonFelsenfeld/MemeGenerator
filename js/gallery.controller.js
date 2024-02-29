@@ -4,9 +4,9 @@ function onInit() {
   gElCanvas = document.querySelector('.main-canvas')
   gCtx = gElCanvas.getContext('2d')
 
-  renderMeme()
-  // hideEditor()
-  // renderGallery()
+  hideEditor()
+  hideSavedMemes()
+  renderGallery()
 }
 
 function renderGallery() {
@@ -34,6 +34,15 @@ function onRandomMeme() {
   onImgSelect(rndIdx)
 }
 
+function onSavedMemes() {
+  hideEditor()
+  hideGallery()
+  showSavedMemes()
+  renderSavedMemes()
+}
+
+////////////////////////////////////////////////////
+
 function hideGallery() {
   const elGallery = document.querySelector('.gallery-section')
   elGallery.style.display = 'none'
@@ -46,6 +55,16 @@ function hideEditor() {
 
 function showEditor() {
   const elEditor = document.querySelector('.editor-section')
+  elEditor.style.display = 'grid'
+}
+
+function hideSavedMemes() {
+  const elEditor = document.querySelector('.saved-memes-section')
+  elEditor.style.display = 'none'
+}
+
+function showSavedMemes() {
+  const elEditor = document.querySelector('.saved-memes-section')
   elEditor.style.display = 'grid'
 }
 
