@@ -8,6 +8,8 @@ let gUploadedImg = null
 let gElCanvas
 let gCtx
 
+////////////////////////////////////////////////////
+
 function renderMeme() {
   const { selectedImgId, lines } = getMeme()
   hideInlineInput()
@@ -138,6 +140,8 @@ function onAddSticker(sticker) {
   addSticker(sticker)
   renderMeme()
 }
+
+function onRotateLine() {}
 
 ////////////////////////////////////////////////////
 
