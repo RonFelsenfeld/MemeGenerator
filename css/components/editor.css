@@ -9,8 +9,23 @@
 }
 
 .canvas-container {
-  width: 100%;
+  position: relative;
   justify-content: center;
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.canvas-container .inline-text-input {
+  position: absolute;
+
+  width: 40%;
+  padding: 0.3em;
+
+  font-size: 1.5em;
+  font-family: inherit;
+  background-color: var(--primary-2);
+  display: none;
 }
 
 .main-canvas {
@@ -50,6 +65,7 @@
   flex-grow: 1;
   padding: 0.6em;
   border-radius: var(--pill-border-radius);
+  font-family: inherit;
 }
 
 .input-area .btn-clear {

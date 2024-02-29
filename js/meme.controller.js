@@ -47,6 +47,9 @@ function onTextInput(txt) {
   const lineWidth = calcLineWidth()
   setLineWidth(lineWidth)
 
+  // If editing from inline --> show on main text input
+  const elTextInput = document.querySelector('.text-input')
+  elTextInput.value = txt
   renderMeme()
 }
 
@@ -122,6 +125,7 @@ function onAddSticker(sticker) {
 ////////////////////////////////////////////////////
 
 function onCanvasClicked(ev) {
+  hideInlineInput()
   const { x: offsetX, y: offsetY } = getEvPos(ev)
 
   const { lines } = getMeme()
@@ -157,6 +161,7 @@ function onCanvasDrag(ev) {
 }
 
 function onStopDrag() {
+  if (isDragging()) renderInlineInput()
   setIsDragging(false)
   document.body.style.cursor = 'auto'
 }
@@ -328,4 +333,20 @@ function showMsg(msg) {
   setTimeout(() => {
     elMsg.classList.remove('show')
   }, 2000)
+}
+
+function renderInlineInput() {
+  const elInlineInput = document.querySelector('.inline-text-input')
+  const { txt, x, y } = getCurrLine()
+
+  elInlineInput.style.display = 'block'
+  elInlineInput.value = txt
+  elInlineInput.style.top = y - 40 + 'px'
+  elInlineInput.style.left = x - FRAME_PAD + 'px'
+  elInlineInput.select()
+}
+
+function hideInlineInput() {
+  const elInlineInput = document.querySelector('.inline-text-input')
+  elInlineInput.style.display = 'none'
 }

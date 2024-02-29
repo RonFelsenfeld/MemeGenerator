@@ -77,6 +77,12 @@
       <section class="editor-section main-layout">
         <div class="editor-container">
           <div class="canvas-container flex">
+            <input
+              type="text"
+              name="inline-text-input"
+              class="inline-text-input"
+              oninput="onTextInput(this.value)"
+            />
             <canvas class="main-canvas" width="500" height="500"></canvas>
           </div>
 

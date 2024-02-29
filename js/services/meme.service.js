@@ -39,7 +39,7 @@ let gIsDrag = false
 
 let gMeme = {
   id: makeId(), // Will be the key when saving to storage
-  selectedImgId: 0,
+  selectedImgId: 2,
   selectedLineIdx: 0,
   lines: [_createLine()],
 }
