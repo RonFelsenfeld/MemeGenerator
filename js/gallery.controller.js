@@ -54,6 +54,7 @@ function onGallery() {
   gUploadedImg = null
   hideEditor()
   hideSavedMemes()
+  if (isMenuOpen()) closeMenu()
 
   showGallery()
   renderGallery()
@@ -63,6 +64,7 @@ function onSavedMemes() {
   gUploadedImg = null
   hideEditor()
   hideGallery()
+  if (isMenuOpen()) closeMenu()
 
   showSavedMemes()
   renderSavedMemes()
@@ -157,6 +159,14 @@ function showSavedMemes() {
 
 function onToggleMenu() {
   document.body.classList.toggle('menu-open')
+}
+
+function isMenuOpen() {
+  return document.body.classList.contains('menu-open')
+}
+
+function closeMenu() {
+  document.body.classList.remove('menu-open')
 }
 
 function highlightCurrSection(elBtn) {

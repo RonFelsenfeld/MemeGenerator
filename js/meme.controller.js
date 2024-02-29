@@ -141,6 +141,8 @@ function onCanvasClicked(ev) {
     updateInputField()
     setIsDragging(true)
   }
+
+  document.body.style.cursor = 'grab'
   renderMeme()
 }
 
@@ -149,11 +151,14 @@ function onCanvasDrag(ev) {
 
   const newPos = getEvPos(ev)
   dragLine(newPos)
+
+  document.body.style.cursor = 'grabbing'
   renderMeme()
 }
 
 function onStopDrag() {
   setIsDragging(false)
+  document.body.style.cursor = 'auto'
 }
 
 ////////////////////////////////////////////////////
