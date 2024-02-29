@@ -58,6 +58,14 @@ function onSetFilter(filterBy) {
   renderGallery()
 }
 
+function onClearFilter() {
+  const elFilterInput = document.querySelector('.filter-input')
+  elFilterInput.value = ''
+
+  setFilterBy('')
+  renderGallery()
+}
+
 ////////////////////////////////////////////////////
 
 function hideGallery() {

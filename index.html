@@ -38,25 +38,31 @@
 
     <main>
       <section class="gallery-section main-layout">
-        <header class="gallery-header">
-          <input
-            type="text"
-            name="filter-input"
-            id="filter-input"
-            list="keywords"
-            autocomplete="off"
-            placeholder="Filter images"
-            oninput="onSetFilter(this.value)"
-          />
+        <header class="gallery-header flex space-between">
+          <div class="filter-container flex">
+            <input
+              type="text"
+              name="filter-input"
+              class="filter-input"
+              list="keywords"
+              autocomplete="off"
+              placeholder="Filter images"
+              oninput="onSetFilter(this.value)"
+            />
 
-          <datalist id="keywords">
-            <option value="Funny"></option>
-            <option value="Cute"></option>
-            <option value="Animal"></option>
-            <option value="Baby"></option>
-            <option value="Smile"></option>
-            <option value="Men"></option>
-          </datalist>
+            <datalist id="keywords">
+              <option value="Funny"></option>
+              <option value="Cute"></option>
+              <option value="Animal"></option>
+              <option value="Baby"></option>
+              <option value="Smile"></option>
+              <option value="Men"></option>
+            </datalist>
+
+            <button class="btn btn-clear" onclick="onClearFilter()">
+              Clear
+            </button>
+          </div>
 
           <button class="btn btn-frenzy" onclick="onRandomMeme()">
             Frenzy

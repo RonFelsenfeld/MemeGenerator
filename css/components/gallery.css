@@ -1,10 +1,47 @@
-.gallery-section .btn-frenzy {
-  justify-self: end;
-  padding: 1em 2em;
-  border-radius: 2em;
+.gallery-section .gallery-header {
+  margin-block-end: 1rem;
+  padding: 3em;
+  background-color: var(--primary-1);
+}
 
-  background-color: rgb(91, 209, 248);
+.gallery-header .filter-container {
+  gap: 1em;
+  width: 50%;
+}
+
+.gallery-header .btn {
+  padding: 1em 1.5em;
+  border-radius: var(--pill-border-radius);
+
+  font-family: robotoBold, serif;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+
   transition: var(--color-transition);
+}
+
+.gallery-section .filter-input {
+  flex-grow: 1;
+  padding: 1em;
+  border: none;
+  border-radius: var(--pill-border-radius);
+
+  font-size: 1.8em;
+  font-family: robotoBold, serif;
+  color: var(--primary-2);
+  background-color: var(--primary-base);
+}
+
+.gallery-section .btn-clear {
+  background-color: rgb(129, 237, 90);
+}
+
+.gallery-section .btn-clear:hover {
+  background-color: rgb(100, 187, 68);
+}
+
+.gallery-section .btn-frenzy {
+  background-color: rgb(91, 209, 248);
 }
 
 .gallery-section .btn-frenzy:hover {

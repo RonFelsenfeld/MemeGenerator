@@ -48,7 +48,7 @@
 .input-area .text-input {
   flex-grow: 1;
   padding: 0.6em;
-  border-radius: 2em;
+  border-radius: var(--pill-border-radius);
 }
 
 .input-area .btn-clear {
@@ -121,7 +121,7 @@
 
 .file-options .btn-file-action {
   padding: 1.5em;
-  border-radius: 2em;
+  border-radius: var(--pill-border-radius);
 
   transition: background-color var(--color-transition),
     transform var(--transform-transition);
