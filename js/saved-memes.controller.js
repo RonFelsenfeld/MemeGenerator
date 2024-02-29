@@ -16,4 +16,5 @@ function onEditMeme(memeId) {
   hideSavedMemes()
   showEditor()
   editMeme(memeId)
+  renderMeme()
 }

@@ -53,6 +53,11 @@ function onRandomMeme() {
   onImgSelect(rndIdx)
 }
 
+function onSetFilter(filterBy) {
+  setFilterBy(filterBy)
+  renderGallery()
+}
+
 ////////////////////////////////////////////////////
 
 function hideGallery() {

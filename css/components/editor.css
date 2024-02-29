@@ -120,7 +120,7 @@
 }
 
 .file-options .btn-file-action {
-  padding: 1em;
+  padding: 1.5em;
   border-radius: 2em;
 
   transition: background-color var(--color-transition),
@@ -130,7 +130,7 @@
 }
 
 .file-options .btn-file-action:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
   font-family: robotoBold, serif;
 }
 

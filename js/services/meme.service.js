@@ -1,28 +1,30 @@
 'use strict'
 
+const SAVED_KEY = 'memesDB'
+
 let gId = 1
-const IMGS = [
+let gFilterBy = ''
+const gIMGS = [
   { id: gId++, url: 'img/1.jpg', keywords: ['funny'] },
-  { id: gId++, url: 'img/2.jpg', keywords: ['cute', 'dog'] },
-  { id: gId++, url: 'img/3.jpg', keywords: ['cute', 'funny'] },
-  { id: gId++, url: 'img/4.jpg', keywords: ['cat'] },
-  { id: gId++, url: 'img/5.jpg', keywords: ['cute', 'funny'] },
+  { id: gId++, url: 'img/2.jpg', keywords: ['cute', 'animal'] },
+  { id: gId++, url: 'img/3.jpg', keywords: ['cute'] },
+  { id: gId++, url: 'img/4.jpg', keywords: ['cute, animal'] },
+  { id: gId++, url: 'img/5.jpg', keywords: ['funny', 'baby'] },
   { id: gId++, url: 'img/6.jpg', keywords: ['funny'] },
-  { id: gId++, url: 'img/7.jpg', keywords: ['sad'] },
-  { id: gId++, url: 'img/8.jpg', keywords: ['funny'] },
-  { id: gId++, url: 'img/9.jpg', keywords: ['sad'] },
-  { id: gId++, url: 'img/10.jpg', keywords: ['happy'] },
-  { id: gId++, url: 'img/11.jpg', keywords: ['funny'] },
-  { id: gId++, url: 'img/12.jpg', keywords: ['sad'] },
-  { id: gId++, url: 'img/13.jpg', keywords: ['happy'] },
-  { id: gId++, url: 'img/14.jpg', keywords: ['happy', 'funny'] },
-  { id: gId++, url: 'img/15.jpg', keywords: ['serious'] },
-  { id: gId++, url: 'img/16.jpg', keywords: ['happy'] },
-  { id: gId++, url: 'img/17.jpg', keywords: ['funny'] },
-  { id: gId++, url: 'img/18.jpg', keywords: ['sad'] },
+  { id: gId++, url: 'img/7.jpg', keywords: ['cute, baby'] },
+  { id: gId++, url: 'img/8.jpg', keywords: ['smile'] },
+  { id: gId++, url: 'img/9.jpg', keywords: ['smile', 'funny'] },
+  { id: gId++, url: 'img/10.jpg', keywords: ['smile', 'men'] },
+  { id: gId++, url: 'img/11.jpg', keywords: ['funny', 'men'] },
+  { id: gId++, url: 'img/12.jpg', keywords: ['funny, men'] },
+  { id: gId++, url: 'img/13.jpg', keywords: ['happy', 'men'] },
+  { id: gId++, url: 'img/14.jpg', keywords: ['men'] },
+  { id: gId++, url: 'img/15.jpg', keywords: ['funny'] },
+  { id: gId++, url: 'img/16.jpg', keywords: ['smile', 'cute'] },
+  { id: gId++, url: 'img/17.jpg', keywords: ['men'] },
+  { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
 ]
 
-const SAVED_KEY = 'memesDB'
 const gSavesMemes = loadFromStorage(SAVED_KEY) || []
 
 let gMeme = {
@@ -37,7 +39,8 @@ function getMeme() {
 }
 
 function getImgs() {
-  return IMGS
+  if (!gFilterBy) return gIMGS
+  return _filterImgs()
 }
 
 function getSavedMemes() {
@@ -50,11 +53,17 @@ function setImg(imgId) {
   gMeme.selectedImgId = imgId
 }
 
+function setFilterBy(filterBy) {
+  gFilterBy = filterBy
+}
+
 function editMeme(memeId) {
   const loadedMeme = gSavesMemes.find(savedMeme => savedMeme.meme.id === memeId)
 
   gMeme = loadedMeme.meme
 }
+
+////////////////////////////////////////////////////
 
 function getCurrLine() {
   return gMeme.lines[gMeme.selectedLineIdx]
@@ -169,6 +178,15 @@ function _createLine() {
     y: 0,
     width: 119.9609375, // Hard coded witdh off the current txt at the current size
   }
+}
+
+function _filterImgs() {
+  const filteredImgs = gIMGS.filter(img => {
+    const { keywords } = img
+    return keywords.some(word => word.includes(gFilterBy.toLowerCase()))
+  })
+
+  return filteredImgs
 }
 
 function _saveMemeToStorage(meme) {
