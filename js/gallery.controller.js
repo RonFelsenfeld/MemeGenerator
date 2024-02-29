@@ -74,7 +74,9 @@ function onSavedMemes() {
 function onImgSelect(imgId) {
   hideGallery()
 
+  createMeme()
   setImg(+imgId)
+
   showEditor()
   renderMeme()
 }

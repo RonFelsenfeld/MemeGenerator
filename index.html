@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meme Generator</title>
+    <title>Memerator</title>
 
     <link rel="stylesheet" href="css/main.css" />
   </head>
@@ -75,8 +75,8 @@
       </section>
 
       <section class="editor-section main-layout">
-        <div class="editor-container">
-          <div class="canvas-container flex">
+        <div class="editor-container flex">
+          <div class="canvas-container">
             <input
               type="text"
               name="inline-text-input"
@@ -103,12 +103,16 @@
             </div>
 
             <div class="line-controls flex">
-              <button class="btn btn-add-line" onclick="onAddLine()">
+              <button
+                title="Add line"
+                class="btn btn-control btn-add-line"
+                onclick="onAddLine()"
+              >
                 <img src="img/add-line.png" alt="Plus sign" />
               </button>
 
               <button
-                class="btn btn-switch-line"
+                class="btn btn-control btn-switch-line"
                 data-dir="1"
                 title="Next line"
                 onclick="onSwitchLine(this.dataset)"
@@ -117,7 +121,7 @@
               </button>
 
               <button
-                class="btn btn-switch-line"
+                class="btn btn-control btn-switch-line"
                 data-dir="-1"
                 title="Previous line"
                 onclick="onSwitchLine(this.dataset)"
@@ -126,8 +130,8 @@
               </button>
 
               <button
-                class="btn btn-delete-line"
-                title="Previous line"
+                class="btn btn-control btn-delete-line"
+                title="Delete line"
                 onclick="onRemoveLine()"
               >
                 <img src="img/trash.png" alt="Arrow up" />
@@ -135,16 +139,25 @@
             </div>
 
             <div class="text-editor flex">
-              <div class="flex space-between">
-                <button class="btn btn-font-inc" onclick="onIncreaseFont()">
+              <div class="flex space-around">
+                <button
+                  title="Increase font size"
+                  class="btn btn-font-inc"
+                  onclick="onIncreaseFont()"
+                >
                   <img src="img/increase.png" alt="Increase font size" />
                 </button>
 
-                <button class="btn btn-font-dec" onclick="onDecreaseFont()">
+                <button
+                  title="Decrease font size"
+                  class="btn btn-font-dec"
+                  onclick="onDecreaseFont()"
+                >
                   <img src="img/decrease.png" alt="Decrease font size" />
                 </button>
 
                 <button
+                  title="Align left"
                   class="btn btn-align-left"
                   data-alignment="left"
                   onclick="onSetAlignment(this.dataset)"
@@ -153,6 +166,7 @@
                 </button>
 
                 <button
+                  title="Align center"
                   class="btn btn-align-center"
                   data-alignment="center"
                   onclick="onSetAlignment(this.dataset)"
@@ -161,6 +175,7 @@
                 </button>
 
                 <button
+                  title="Align right"
                   class="btn btn-align-right"
                   data-alignment="right"
                   onclick="onSetAlignment(this.dataset)"
@@ -168,13 +183,18 @@
                   <img src="img/align-to-right.png" alt="Align to right" />
                 </button>
 
-                <button class="btn btn-rotate" onclick="onRotateLine()">
+                <button
+                  title="Rotate line"
+                  class="btn btn-rotate"
+                  onclick="onRotateLine()"
+                >
                   <img src="img/rotate.png" alt="Rotate icon" />
                 </button>
               </div>
 
               <div class="editor-text-row flex">
                 <select
+                  title="Select font"
                   class="btn font-family-select"
                   onchange="onChangeFontFamily(this.value)"
                 >
@@ -186,6 +206,7 @@
                 </select>
 
                 <button
+                  title="Move up"
                   class="btn btn-row"
                   data-dir="-1"
                   onclick="onMoveLine(this.dataset)"
@@ -194,6 +215,7 @@
                 </button>
 
                 <button
+                  title="Move down"
                   class="btn btn-row"
                   data-dir="1"
                   onclick="onMoveLine(this.dataset)"
@@ -201,7 +223,7 @@
                   <img src="img/row-down.png" alt="Row down" />
                 </button>
 
-                <div class="color-container">
+                <div title="Stroke color" class="color-container flex">
                   <img
                     src="img/brush.png"
                     alt="Brush icon"
@@ -216,7 +238,7 @@
                   />
                 </div>
 
-                <div class="color-container">
+                <div title="Fill color" class="color-container flex">
                   <img
                     src="img/fill-color.png"
                     alt="Fill icon"
@@ -266,8 +288,11 @@
               </button>
             </div>
 
-            <div class="file-options flex space-around">
-              <button class="btn-file-action link-download">
+            <div class="file-options flex">
+              <button
+                title="Download meme"
+                class="btn btn-file-action link-download"
+              >
                 <a
                   href="#"
                   onclick="onDownloadMeme(this)"
@@ -276,11 +301,16 @@
                 >
               </button>
 
-              <button class="btn-file-action btn-save" onclick="onSaveMeme()">
+              <button
+                title="Save meme"
+                class="btn-file-action btn-save"
+                onclick="onSaveMeme()"
+              >
                 Save Meme
               </button>
 
               <button
+                title="Share meme to Facebook"
                 class="btn-file-action btn-facebook"
                 onclick="onShareFacebook()"
               >

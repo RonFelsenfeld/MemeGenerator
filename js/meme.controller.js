@@ -2,7 +2,6 @@
 
 const FRAME_PAD = 10
 
-let gIsSaving = false
 let gUploadedImg = null
 
 let gElCanvas
@@ -19,14 +18,16 @@ function renderMeme() {
   img.src = gUploadedImg ? gUploadedImg.src : `img/${selectedImgId}.jpg`
 
   img.onload = () => {
-    gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
+    coverCanvasWithImg(img)
     if (!lines.length) return
 
     renderText()
-    updateEditor()
 
-    // If saving --> don't highlight frame
-    if (!gIsSaving) highlightCurrLine() // ! FIX
+    const dataURL = gElCanvas.toDataURL('image/jpeg')
+    setDataURL(dataURL)
+
+    highlightCurrLine()
+    updateEditor()
   }
 }
 
@@ -188,27 +189,14 @@ function onStopDrag() {
 ////////////////////////////////////////////////////
 
 function onDownloadMeme(elLink) {
-  gIsSaving = true
-  renderMeme()
-
-  const dataURL = gElCanvas.toDataURL('image/jpeg')
+  const dataURL = getDataURL()
   elLink.href = dataURL
   showMsg('Meme downloaded')
-
-  gIsSaving = false
-  renderMeme()
 }
 
 function onSaveMeme() {
-  gIsSaving = true
-  renderMeme()
-
-  const dataURL = gElCanvas.toDataURL('image/jpeg')
-  saveMeme(dataURL)
+  saveMeme()
   showMsg('Meme saved')
-
-  gIsSaving = false
-  renderMeme()
 }
 
 // Facebook sharing
@@ -247,6 +235,13 @@ function doUploadImg(imgDataUrl, onSuccess) {
   }
   XHR.open('POST', '//ca-upload.com/here/upload.php')
   XHR.send(formData)
+}
+
+function handleSaveMeme() {
+  const dataURL = gElCanvas.toDataURL('image/jpeg')
+  saveMeme(dataURL)
+  showMsg('Meme saved')
+  gIsSaving = false
 }
 
 ////////////////////////////////////////////////////
@@ -309,6 +304,11 @@ function calcAlignmentRight() {
 }
 
 ////////////////////////////////////////////////////
+
+function coverCanvasWithImg(img) {
+  gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+  gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+}
 
 function addCanvasListeners() {
   addMouseListeners()

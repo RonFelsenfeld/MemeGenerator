@@ -37,14 +37,19 @@ const gKeywordsSearchCountMap = {
 let gFilterBy = ''
 let gIsDrag = false
 
-let gMeme = {
-  id: makeId(), // Will be the key when saving to storage
-  selectedImgId: 2,
-  selectedLineIdx: 0,
-  lines: [_createLine()],
-}
+let gMeme
 
 ////////////////////////////////////////////////////
+
+function createMeme() {
+  gMeme = {
+    id: makeId(), // Will be the key when saving to storage
+    selectedImgId: 0,
+    selectedLineIdx: 0,
+    dataURL: '',
+    lines: [_createLine()],
+  }
+}
 
 function getMeme() {
   return gMeme
@@ -81,9 +86,17 @@ function setFilterBy(filterBy) {
   gFilterBy = filterBy.toLowerCase()
 }
 
+function setDataURL(dataURL) {
+  gMeme.dataURL = dataURL
+}
+
+function getDataURL() {
+  return gMeme.dataURL
+}
+
 function editMeme(memeId) {
-  const loadedMeme = gSavesMemes.find(savedMeme => savedMeme.meme.id === memeId)
-  gMeme = loadedMeme.meme
+  const loadedMeme = gSavesMemes.find(savedMeme => savedMeme.id === memeId)
+  gMeme = loadedMeme
 }
 
 function increaseKeywordCount(keyword) {
@@ -187,19 +200,15 @@ function moveLine(dir) {
   // Maybe the user wants to hide part of it
 }
 
-function saveMeme(dataURL) {
-  const memeToSave = {
-    meme: gMeme,
-    url: dataURL,
-  }
+function saveMeme() {
+  const previousVersion = gSavesMemes.find(
+    savedMeme => savedMeme.id === gMeme.id
+  )
 
   // If the meme is already saved --> change it's url
-  const previousVersion = gSavesMemes.find(
-    savedMeme => savedMeme.meme.id === gMeme.id
-  )
-  if (previousVersion) previousVersion.url = dataURL
+  if (previousVersion) previousVersion.dataURL = getDataURL()
   // Else --> save a new meme
-  else gSavesMemes.push(memeToSave)
+  else gSavesMemes.push(gMeme)
 
   _saveMemeToStorage()
 }

@@ -1,4 +1,11 @@
 @media (max-width: 970px) {
+  .main-layout {
+    grid-template-columns: minmax(20px, 1fr) minmax(auto, 930px) minmax(
+        20px,
+        1fr
+      );
+  }
+
   .main-header .btn-toggle-menu {
     display: block;
   }
@@ -39,13 +46,6 @@
     width: 100%;
   }
 
-  .main-layout {
-    grid-template-columns: minmax(20px, 1fr) minmax(auto, 930px) minmax(
-        20px,
-        1fr
-      );
-  }
-
   .gallery {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
@@ -66,8 +66,8 @@
   }
 
   .editor-container {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    flex-direction: column;
+    align-items: center;
     row-gap: 2em;
   }
 
@@ -76,7 +76,19 @@
   }
 
   .editor .btn {
-    width: 5em;
-    height: 5em;
+    width: 6em;
+    height: 6em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .editor-container {
+    padding: 3em;
+    gap: 5em;
+  }
+
+  .editor .btn:not(.btn-clear, .btn-control) {
+    width: 4em;
+    height: 4em;
   }
 }

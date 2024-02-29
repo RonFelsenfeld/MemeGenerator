@@ -1,9 +1,6 @@
 .editor-container {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 1.5em;
+  align-items: flex-start;
 
-  padding: 3em;
   border-radius: var(--border-radius);
   background-color: var(--primary-1);
 }
@@ -11,8 +8,6 @@
 .canvas-container {
   position: relative;
   justify-content: center;
-  width: 100%;
-
   overflow: hidden;
 }
 
@@ -35,7 +30,7 @@
 .editor {
   flex-direction: column;
   gap: 2em;
-  align-self: center;
+  flex-grow: 1;
 
   border-radius: var(--border-radius);
   background-color: rgba(173, 216, 230, 0.606);
@@ -43,8 +38,8 @@
 }
 
 .editor .btn {
-  width: 3em;
-  height: 3em;
+  width: 4em;
+  height: 4em;
 
   border-radius: 13px;
 
@@ -57,13 +52,15 @@
 /* Input Area */
 
 .editor .input-area {
+  align-items: center;
   width: 100%;
   gap: 2em;
 }
 
 .input-area .text-input {
   flex-grow: 1;
-  padding: 0.6em;
+  padding: 1em;
+
   border-radius: var(--pill-border-radius);
   font-family: inherit;
 }
@@ -145,6 +142,7 @@
 
 .text-editor .color-container {
   position: relative;
+  justify-content: center;
 }
 
 .color-container > *:not(img) {
@@ -192,7 +190,12 @@
 /* File Options */
 
 .file-options {
+  gap: 2em;
   width: 100%;
+}
+
+.file-options > * {
+  flex-grow: 1;
 }
 
 .file-options .btn-file-action {
