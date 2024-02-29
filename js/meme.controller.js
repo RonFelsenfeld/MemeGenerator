@@ -11,8 +11,8 @@ let gCtx
 ////////////////////////////////////////////////////
 
 function renderMeme() {
-  const { selectedImgId, lines } = getMeme()
   hideInlineInput()
+  const { selectedImgId, lines } = getMeme()
 
   const img = new Image()
   // If there is uploaded img --> use it
@@ -28,8 +28,6 @@ function renderMeme() {
     // If saving --> don't highlight frame
     if (!gIsSaving) highlightCurrLine() // ! FIX
   }
-
-  addCanvasListeners()
 }
 
 function renderText() {

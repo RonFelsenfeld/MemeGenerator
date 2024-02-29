@@ -50,6 +50,21 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
+  .gallery-section .gallery-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2em;
+  }
+
+  .gallery-header .filter-container {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .gallery-header .keywords-container {
+    justify-content: space-around;
+  }
+
   .editor-container {
     grid-template-columns: 1fr;
     justify-items: center;
