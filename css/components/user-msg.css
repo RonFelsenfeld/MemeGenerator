@@ -12,7 +12,7 @@
   background-color: rgb(92, 92, 228);
 
   /* Putting it outside the screen */
-  transform: translateX(110%);
+  transform: translateX(130%);
   transition: var(--transform-transition);
 }
 
