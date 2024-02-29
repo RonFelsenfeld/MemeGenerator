@@ -12,14 +12,15 @@ function renderMeme() {
   const img = new Image()
   img.src = `img/${selectedImgId}.jpg`
 
-  // img.onload = () => {
-  gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
-  if (!lines.length) return
+  img.onload = () => {
+    gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
+    if (!lines.length) return
 
-  renderText()
-  // If saving --> don't highlight frame
-  if (!gIsSaving) highlightCurrLine()
-  // }
+    renderText()
+    // ! FIX
+    // If saving --> don't highlight frame
+    if (!gIsSaving) highlightCurrLine()
+  }
 }
 
 function renderText() {
