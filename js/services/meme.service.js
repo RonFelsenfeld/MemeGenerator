@@ -22,7 +22,8 @@ const IMGS = [
   { id: gId++, url: 'img/18.jpg', keywords: ['sad'] },
 ]
 
-const gSavesMemes = []
+const SAVED_KEY = 'memesDB'
+const gSavesMemes = loadFromStorage(SAVED_KEY) || []
 
 let gMeme = {
   id: makeId(), // Will be the key when saving to storage
@@ -50,8 +51,9 @@ function setImg(imgId) {
 }
 
 function editMeme(memeId) {
-  const loadedMeme = loadFromStorage(memeId)
-  gMeme = loadedMeme
+  const loadedMeme = gSavesMemes.find(savedMeme => savedMeme.meme.id === memeId)
+
+  gMeme = loadedMeme.meme
 }
 
 function getCurrLine() {
@@ -138,18 +140,20 @@ function moveLine(dir) {
 }
 
 function saveMeme(dataURL) {
-  _saveMemeToStorage()
-
   const memeToSave = {
-    id: gMeme.id,
+    meme: gMeme,
     url: dataURL,
   }
 
   // If the meme is already saved --> change it's url
-  const previousVersion = gSavesMemes.find(meme => meme.id === memeToSave.id)
+  const previousVersion = gSavesMemes.find(
+    savedMeme => savedMeme.meme.id === gMeme.id
+  )
   if (previousVersion) previousVersion.url = dataURL
   // Else --> save a new meme
   else gSavesMemes.push(memeToSave)
+
+  _saveMemeToStorage()
 }
 
 ////////////////////////////////////////////////////
@@ -167,6 +171,6 @@ function _createLine() {
   }
 }
 
-function _saveMemeToStorage() {
-  saveToStorage(gMeme.id, gMeme)
+function _saveMemeToStorage(meme) {
+  saveToStorage(SAVED_KEY, gSavesMemes)
 }

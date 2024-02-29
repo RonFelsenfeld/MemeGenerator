@@ -4,8 +4,8 @@ function renderSavedMemes() {
   const savedMemes = getSavedMemes()
 
   const strHTMLs = savedMemes.map(
-    meme =>
-      `<img src="${meme.url}" alt="Saved meme" class="saved-meme" onclick="onEditMeme('${meme.id}')" />`
+    savedMeme =>
+      `<img src="${savedMeme.url}" alt="Saved meme" class="saved-meme" onclick="onEditMeme('${savedMeme.meme.id}')" />`
   )
 
   const elSavedMemes = document.querySelector('.saved-memes')
