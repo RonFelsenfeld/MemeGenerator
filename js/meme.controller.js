@@ -10,6 +10,7 @@ let gCtx
 
 function renderMeme() {
   const { selectedImgId, lines } = getMeme()
+  hideInlineInput()
 
   const img = new Image()
   // If there is uploaded img --> use it
@@ -20,9 +21,10 @@ function renderMeme() {
     if (!lines.length) return
 
     renderText()
-    // ! FIX
+    updateEditor()
+
     // If saving --> don't highlight frame
-    if (!gIsSaving) highlightCurrLine()
+    if (!gIsSaving) highlightCurrLine() // ! FIX
   }
 
   addCanvasListeners()
@@ -33,10 +35,12 @@ function renderText() {
 
   lines.forEach(line => {
     gCtx.font = `${line.size}px ${line.family}`
-    gCtx.fillStyle = `${line.color}`
+    gCtx.fillStyle = `${line.fillColor}`
+    gCtx.strokeStyle = `${line.strokeColor}`
     gCtx.textAlign = 'left'
     gCtx.textBaseline = 'top'
 
+    gCtx.strokeText(line.txt, line.x, line.y)
     gCtx.fillText(line.txt, line.x, line.y)
   })
 }
@@ -53,8 +57,19 @@ function onTextInput(txt) {
   renderMeme()
 }
 
-function onChangeColor(color) {
-  setLineColor(color)
+function onChangeStrokeColor(color) {
+  const elBrushIcon = document.querySelector('.brush-icon')
+  elBrushIcon.style.filter = `drop-shadow(1px 2px 0px ${color})`
+
+  setLineStrokeColor(color)
+  renderMeme()
+}
+
+function onChangeFillColor(color) {
+  const elFillIcon = document.querySelector('.fill-icon')
+  elFillIcon.style.filter = `drop-shadow(1px 2px 0px ${color})`
+
+  setLineFillColor(color)
   renderMeme()
 }
 
@@ -78,12 +93,13 @@ function onDecreaseFont() {
 
 function onAddLine() {
   addLine()
+  updateEditor('newLine')
   renderMeme()
 }
 
 function onSwitchLine({ dir }) {
   switchLine(+dir)
-  updateInputField()
+  updateEditor()
   renderMeme()
 }
 
@@ -93,7 +109,8 @@ function onRemoveLine() {
 
   removeLine()
   showMsg('Line Deleted')
-  updateInputField()
+  hideInlineInput()
+  updateEditor()
   renderMeme()
 }
 
@@ -142,7 +159,7 @@ function onCanvasClicked(ev) {
 
   if (selectedLine) {
     setCurrLine(selectedLine.id)
-    updateInputField()
+    updateEditor()
     setIsDragging(true)
   }
 
@@ -239,6 +256,7 @@ function highlightCurrLine() {
   gCtx.beginPath()
   gCtx.setLineDash([10, 10])
   gCtx.lineWidth = 2
+  gCtx.strokeStyle = 'black'
 
   gCtx.strokeRect(
     x - FRAME_PAD,
@@ -309,9 +327,6 @@ function addTouchListeners() {
 
 function updateInputField() {
   const { txt } = getCurrLine()
-
-  const elTextInput = document.querySelector('.text-input')
-  elTextInput.value = txt
 }
 
 function onClearInput() {
@@ -349,4 +364,20 @@ function renderInlineInput() {
 function hideInlineInput() {
   const elInlineInput = document.querySelector('.inline-text-input')
   elInlineInput.style.display = 'none'
+}
+
+function updateEditor() {
+  const { txt, strokeColor, fillColor, family } = getCurrLine()
+
+  const elFillIcon = document.querySelector('.fill-icon')
+  elFillIcon.style.filter = `drop-shadow(1px 2px 0px ${fillColor})`
+
+  const elBrushIcon = document.querySelector('.brush-icon')
+  elBrushIcon.style.filter = `drop-shadow(1px 2px 0px ${strokeColor})`
+
+  const elFontSelect = document.querySelector('.font-family-select')
+  elFontSelect.value = family
+
+  const elTextInput = document.querySelector('.text-input')
+  elTextInput.value = txt
 }

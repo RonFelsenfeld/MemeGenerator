@@ -137,9 +137,14 @@ function setLineTxt(txt) {
   line.txt = txt
 }
 
-function setLineColor(color) {
+function setLineStrokeColor(color) {
   const line = getCurrLine()
-  line.color = color
+  line.strokeColor = color
+}
+
+function setLineFillColor(color) {
+  const line = getCurrLine()
+  line.fillColor = color
 }
 
 function increaseTextSize() {
@@ -214,7 +219,8 @@ function _createLine() {
     txt: 'Enter your text',
     family: 'Impact',
     size: 20,
-    color: 'black',
+    strokeColor: 'black',
+    fillColor: 'white',
     x: 15,
     y: 15,
     width: 119.9609375, // Hard coded width off the current txt at the current size

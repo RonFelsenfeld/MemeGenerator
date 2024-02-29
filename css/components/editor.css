@@ -143,6 +143,28 @@
   width: 2em;
 }
 
+.text-editor .color-container {
+  position: relative;
+}
+
+.color-container > *:not(img) {
+  position: absolute;
+  inset: 0 auto auto 0;
+  opacity: 0;
+}
+
+.color-container img {
+  width: 4em;
+  height: 4em;
+}
+
+.color-container label {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+
 /* //////////////////////////////////////////////////// */
 
 /* Stickers */

@@ -197,12 +197,35 @@
                   <img src="img/row-down.png" alt="Row down" />
                 </button>
 
-                <input
-                  type="color"
-                  name="color-input"
-                  id="color-input"
-                  onchange="onChangeColor(this.value)"
-                />
+                <div class="color-container">
+                  <img
+                    src="img/brush.png"
+                    alt="Brush icon"
+                    class="color-img brush-icon"
+                  />
+                  <label for="storke-color">Color</label>
+                  <input
+                    type="color"
+                    name="color-input"
+                    id="storke-color"
+                    onchange="onChangeStrokeColor(this.value)"
+                  />
+                </div>
+
+                <div class="color-container">
+                  <img
+                    src="img/fill-color.png"
+                    alt="Fill icon"
+                    class="color-img fill-icon"
+                  />
+                  <label for="fill-color">Color</label>
+                  <input
+                    type="color"
+                    name="color-input"
+                    id="fill-color"
+                    onchange="onChangeFillColor(this.value)"
+                  />
+                </div>
               </div>
             </div>
 
