@@ -174,15 +174,15 @@
 }
 
 .stickers .btn-sticker {
+  font-size: 4em;
   background-color: transparent;
-  font-size: 2.5em;
   box-shadow: none;
 
   transition: transform var(--transform-transition);
 }
 
 .stickers .btn-sticker:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
 }
 
 /* //////////////////////////////////////////////////// */

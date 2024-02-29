@@ -201,7 +201,7 @@ function onSaveMeme() {
 
 // Facebook sharing
 function onShareFacebook() {
-  const imgDataUrl = gElCanvas.toDataURL('image/jpeg')
+  const imgDataUrl = getDataURL()
 
   function onSuccess(uploadedImgUrl) {
     const url = encodeURIComponent(uploadedImgUrl)

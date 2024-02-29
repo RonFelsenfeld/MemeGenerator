@@ -3,8 +3,8 @@
   border-radius: var(--border-radius);
   margin-block-end: 1rem;
 
-  background-color: #6daddb;
-  background-image: linear-gradient(315deg, #313131 0%, #6daddb 74%);
+  background-color: var(--gradient-color);
+  background-image: var(--gradient-image);
 }
 
 .gallery-header .filter-container {

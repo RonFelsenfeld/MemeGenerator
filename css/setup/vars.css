@@ -3,6 +3,9 @@
   --primary-1: #383b42;
   --primary-base: #22252c;
 
+  --gradient-color: #6daddb;
+  --gradient-image: linear-gradient(315deg, #313131 0%, #6daddb 74%);
+
   --border-radius: 30px;
   --pill-border-radius: 2em;
 

@@ -1,6 +1,24 @@
 .saved-memes-section .saved-memes {
   gap: 4em;
-  margin-block: 4em;
+
+  padding: 4em;
+  border-radius: var(--border-radius);
+
+  background-color: var(--primary-1);
+}
+
+.saved-memes-section .saved-memes-header {
+  padding: 3em;
+  border-radius: var(--border-radius);
+  margin-block-end: 1rem;
+
+  background-color: var(--gradient-color);
+  background-image: var(--gradient-image);
+}
+
+.saved-memes-header .saved-title {
+  font-size: 4em;
+  letter-spacing: -0.5px;
 }
 
 .saved-memes .saved-meme {
