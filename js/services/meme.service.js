@@ -174,8 +174,8 @@ function _createLine() {
     family: 'Impact',
     size: 20,
     color: 'black',
-    x: 0,
-    y: 0,
+    x: 15,
+    y: 15,
     width: 119.9609375, // Hard coded witdh off the current txt at the current size
   }
 }

@@ -2,6 +2,7 @@
 
 const FRAME_PAD = 10
 
+let gIsSaving = false
 let gElCanvas
 let gCtx
 
@@ -11,13 +12,14 @@ function renderMeme() {
   const img = new Image()
   img.src = `img/${selectedImgId}.jpg`
 
-  img.onload = () => {
-    gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
-    if (!lines.length) return
+  // img.onload = () => {
+  gCtx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight)
+  if (!lines.length) return
 
-    renderText()
-    highlightCurrLine()
-  }
+  renderText()
+  // If saving --> don't highlight frame
+  if (!gIsSaving) highlightCurrLine()
+  // }
 }
 
 function renderText() {
@@ -127,15 +129,27 @@ function onCanvasClicked(ev) {
 ////////////////////////////////////////////////////
 
 function onDownloadMeme(elLink) {
+  gIsSaving = true
+  renderMeme()
+
   const dataURL = gElCanvas.toDataURL('image/jpeg')
   elLink.href = dataURL
   showMsg('Meme downloaded')
+
+  gIsSaving = false
+  renderMeme()
 }
 
 function onSaveMeme() {
+  gIsSaving = true
+  renderMeme()
+
   const dataURL = gElCanvas.toDataURL('image/jpeg')
   saveMeme(dataURL)
   showMsg('Meme saved')
+
+  gIsSaving = false
+  renderMeme()
 }
 
 ////////////////////////////////////////////////////
@@ -143,8 +157,10 @@ function onSaveMeme() {
 function highlightCurrLine() {
   const line = getCurrLine()
   const { x, y, size, width } = line
+
   gCtx.beginPath()
-  gCtx.lineWidth = 3
+  gCtx.setLineDash([10, 10])
+  gCtx.lineWidth = 2
 
   gCtx.strokeRect(
     x - FRAME_PAD,
