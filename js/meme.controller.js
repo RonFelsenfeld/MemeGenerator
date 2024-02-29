@@ -78,6 +78,7 @@ function onAddLine() {
 
 function onSwitchLine({ dir }) {
   switchLine(+dir)
+  updateInputField()
   renderMeme()
 }
 
@@ -87,6 +88,7 @@ function onRemoveLine() {
 
   removeLine()
   showMsg('Line Deleted')
+  updateInputField()
   renderMeme()
 }
 
@@ -115,6 +117,8 @@ function onAddSticker(sticker) {
   renderMeme()
 }
 
+////////////////////////////////////////////////////
+
 function onCanvasClicked(ev) {
   const { x: offsetX, y: offsetY } = getEvPos(ev)
 
@@ -132,6 +136,7 @@ function onCanvasClicked(ev) {
 
   if (selectedLine) {
     setCurrLine(selectedLine.id)
+    updateInputField()
     setIsDragging(true)
   }
   renderMeme()
@@ -252,9 +257,23 @@ function addTouchListeners() {
   gElCanvas.addEventListener('touchend', onStopDrag)
 }
 
+function updateInputField() {
+  const { txt } = getCurrLine()
+
+  const elTextInput = document.querySelector('.text-input')
+  elTextInput.value = txt
+}
+
 function onClearInput() {
   const elTextInput = document.querySelector('.text-input')
   elTextInput.value = ''
+
+  setLineTxt('')
+
+  const lineWidth = calcLineWidth()
+  setLineWidth(lineWidth)
+
+  renderMeme()
 }
 
 function showMsg(msg) {
