@@ -79,7 +79,9 @@ function onSwitchLine({ dir }) {
 function onRemoveLine() {
   const { lines } = getMeme()
   if (lines.length === 1) return // If there is only one line
+
   removeLine()
+  showMsg('Line Deleted')
   renderMeme()
 }
 
@@ -127,12 +129,13 @@ function onCanvasClicked(ev) {
 function onDownloadMeme(elLink) {
   const dataURL = gElCanvas.toDataURL('image/jpeg')
   elLink.href = dataURL
+  showMsg('Meme downloaded')
 }
 
 function onSaveMeme() {
   const dataURL = gElCanvas.toDataURL('image/jpeg')
   saveMeme(dataURL)
-  // todo showMsg
+  showMsg('Meme saved')
 }
 
 ////////////////////////////////////////////////////
@@ -196,4 +199,13 @@ function calcAlignmentRight() {
 function onClearInput() {
   const elTextInput = document.querySelector('.text-input')
   elTextInput.value = ''
+}
+
+function showMsg(msg) {
+  const elMsg = document.querySelector('.user-msg')
+  elMsg.innerText = `${msg}`
+  elMsg.classList.add('show')
+  setTimeout(() => {
+    elMsg.classList.remove('show')
+  }, 2000)
 }

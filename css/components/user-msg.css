@@ -1,0 +1,21 @@
+.user-msg {
+  position: fixed;
+  inset: auto 10px 10px auto;
+
+  padding: 1.5rem;
+  border: 2px solid rgb(50, 50, 195);
+  border-radius: 9px;
+
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: rgb(92, 92, 228);
+
+  /* Putting it outside the screen */
+  transform: translateX(110%);
+  transition: var(--transform-transition);
+}
+
+.user-msg.show {
+  transform: translateX(0);
+}

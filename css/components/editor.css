@@ -124,7 +124,7 @@
   border-radius: 2em;
 
   transition: background-color var(--color-transition),
-    transform var(--scale-transition);
+    transform var(--transform-transition);
 
   box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.357);
   font-weight: bold;

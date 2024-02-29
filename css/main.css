@@ -13,6 +13,7 @@
 @import url(components/gallery.css);
 @import url(components/editor.css);
 @import url(components/saved-memes.css);
+@import url(components/user-msg.css);
 
 /* Import Media Queries */
 @import url(setup/mq.css);
