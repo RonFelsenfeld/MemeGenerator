@@ -12,12 +12,36 @@
 }
 
 .main-nav-list .btn {
+  position: relative;
   padding: 1em;
   border-radius: 2em;
 
   font-size: 0.6em;
   color: inherit;
   background: transparent;
+
+  transition: background-color var(--color-transition);
+}
+
+.main-nav-list .btn::before {
+  content: '';
+  position: absolute;
+  inset: auto auto 0 0;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: rgb(86, 86, 86);
+
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+/* Only the unselected ones */
+.main-nav-list .btn:not(.selected):hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .main-nav-list .btn.selected {
