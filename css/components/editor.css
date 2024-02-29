@@ -109,6 +109,29 @@
 
 .editor .font-family-select {
   min-width: 7em;
+  flex-grow: 1;
+}
+
+/* //////////////////////////////////////////////////// */
+
+/* Stickers */
+
+.editor .stickers {
+  width: 100%;
+  background-color: var(--primary-2);
+  border-radius: var(--pill-border-radius);
+}
+
+.stickers .btn-sticker {
+  background-color: transparent;
+  font-size: 2.5em;
+  box-shadow: none;
+
+  transition: transform var(--transform-transition);
+}
+
+.stickers .btn-sticker:hover {
+  transform: scale(1.5);
 }
 
 /* //////////////////////////////////////////////////// */

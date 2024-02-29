@@ -165,6 +165,12 @@ function saveMeme(dataURL) {
   _saveMemeToStorage()
 }
 
+function addSticker(sticker) {
+  const newLine = _createLine()
+  newLine.txt = sticker
+  newLine.width = 23 // Hard coded
+  gMeme.lines.push(newLine)
+}
 ////////////////////////////////////////////////////
 
 function _createLine() {
@@ -176,7 +182,7 @@ function _createLine() {
     color: 'black',
     x: 15,
     y: 15,
-    width: 119.9609375, // Hard coded witdh off the current txt at the current size
+    width: 119.9609375, // Hard coded width off the current txt at the current size
   }
 }
 

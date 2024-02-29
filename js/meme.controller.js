@@ -107,6 +107,11 @@ function onMoveLine({ dir }) {
   renderMeme()
 }
 
+function onAddSticker(sticker) {
+  addSticker(sticker)
+  renderMeme()
+}
+
 function onCanvasClicked(ev) {
   const { offsetX, offsetY } = ev
 
