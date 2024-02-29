@@ -1,9 +1,8 @@
 'use strict'
 
 const SAVED_KEY = 'memesDB'
-
 let gId = 1
-let gFilterBy = ''
+
 const gIMGS = [
   { id: gId++, url: 'img/1.jpg', keywords: ['funny'] },
   { id: gId++, url: 'img/2.jpg', keywords: ['cute', 'animal'] },
@@ -24,12 +23,14 @@ const gIMGS = [
   { id: gId++, url: 'img/17.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
 ]
-
 const gSavesMemes = loadFromStorage(SAVED_KEY) || []
+
+let gFilterBy = ''
+let gIsDrag = false
 
 let gMeme = {
   id: makeId(), // Will be the key when saving to storage
-  selectedImgId: 0,
+  selectedImgId: 2,
   selectedLineIdx: 0,
   lines: [_createLine()],
 }
@@ -45,6 +46,14 @@ function getImgs() {
 
 function getSavedMemes() {
   return gSavesMemes
+}
+
+function setIsDragging(isDrag) {
+  gIsDrag = isDrag
+}
+
+function isDragging() {
+  return gIsDrag
 }
 
 ////////////////////////////////////////////////////
@@ -140,6 +149,12 @@ function setLineAlignment(posX) {
   line.x = posX
 }
 
+function dragLine({ x, y }) {
+  const line = getCurrLine()
+  line.x = x
+  line.y = y
+}
+
 function moveLine(dir) {
   const line = getCurrLine()
   line.y += dir
@@ -171,6 +186,7 @@ function addSticker(sticker) {
   newLine.width = 23 // Hard coded
   gMeme.lines.push(newLine)
 }
+
 ////////////////////////////////////////////////////
 
 function _createLine() {

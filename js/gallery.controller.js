@@ -4,9 +4,10 @@ function onInit() {
   gElCanvas = document.querySelector('.main-canvas')
   gCtx = gElCanvas.getContext('2d')
 
-  hideEditor()
+  renderMeme()
+  // hideEditor()
   hideSavedMemes()
-  renderGallery()
+  // renderGallery()
 }
 
 function renderGallery() {

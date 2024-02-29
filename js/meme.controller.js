@@ -21,6 +21,8 @@ function renderMeme() {
     // If saving --> don't highlight frame
     if (!gIsSaving) highlightCurrLine()
   }
+
+  addCanvasListeners()
 }
 
 function renderText() {
@@ -114,7 +116,7 @@ function onAddSticker(sticker) {
 }
 
 function onCanvasClicked(ev) {
-  const { offsetX, offsetY } = ev
+  const { x: offsetX, y: offsetY } = getEvPos(ev)
 
   const { lines } = getMeme()
   const selectedLine = lines.find(line => {
@@ -128,8 +130,23 @@ function onCanvasClicked(ev) {
     return isInXRange && isInYRange
   })
 
-  if (selectedLine) setCurrLine(selectedLine.id)
+  if (selectedLine) {
+    setCurrLine(selectedLine.id)
+    setIsDragging(true)
+  }
   renderMeme()
+}
+
+function onCanvasDrag(ev) {
+  if (!isDragging()) return
+
+  const newPos = getEvPos(ev)
+  dragLine(newPos)
+  renderMeme()
+}
+
+function onStopDrag() {
+  setIsDragging(false)
 }
 
 ////////////////////////////////////////////////////
@@ -217,6 +234,23 @@ function calcAlignmentRight() {
 }
 
 ////////////////////////////////////////////////////
+
+function addCanvasListeners() {
+  addMouseListeners()
+  addTouchListeners()
+}
+
+function addMouseListeners() {
+  gElCanvas.addEventListener('mousedown', onCanvasClicked)
+  gElCanvas.addEventListener('mousemove', onCanvasDrag)
+  gElCanvas.addEventListener('mouseup', onStopDrag)
+}
+
+function addTouchListeners() {
+  gElCanvas.addEventListener('touchstart', onCanvasClicked)
+  gElCanvas.addEventListener('touchmove', onCanvasDrag)
+  gElCanvas.addEventListener('touchend', onStopDrag)
+}
 
 function onClearInput() {
   const elTextInput = document.querySelector('.text-input')
