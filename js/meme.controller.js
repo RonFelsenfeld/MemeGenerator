@@ -10,7 +10,6 @@ let gCtx
 ////////////////////////////////////////////////////
 
 function renderMeme() {
-  hideInlineInput()
   const { selectedImgId, lines } = getMeme()
 
   const img = new Image()
@@ -93,7 +92,8 @@ function onDecreaseFont() {
 }
 
 function onAddLine() {
-  addLine()
+  // Adding line and aligning it based on canvas height
+  addLine(gElCanvas.height)
   updateEditor('newLine')
   renderMeme()
 }
@@ -109,7 +109,7 @@ function onRemoveLine() {
   if (lines.length === 1) return // If there is only one line
 
   removeLine()
-  showMsg('Line Deleted')
+  showMsg('deleteMsg')
   hideInlineInput()
   updateEditor()
   renderMeme()
@@ -139,8 +139,6 @@ function onAddSticker(sticker) {
   addSticker(sticker)
   renderMeme()
 }
-
-function onRotateLine() {}
 
 ////////////////////////////////////////////////////
 
@@ -174,7 +172,7 @@ function onCanvasDrag(ev) {
   if (!isDragging()) return
 
   const newPos = getEvPos(ev)
-  dragLine(newPos)
+  setLinePos(newPos)
 
   document.body.style.cursor = 'grabbing'
   renderMeme()
@@ -191,12 +189,12 @@ function onStopDrag() {
 function onDownloadMeme(elLink) {
   const dataURL = getDataURL()
   elLink.href = dataURL
-  showMsg('Meme downloaded')
+  showMsg('downloadMsg')
 }
 
 function onSaveMeme() {
   saveMeme()
-  showMsg('Meme saved')
+  showMsg('savedMsg')
 }
 
 // Facebook sharing
@@ -235,13 +233,6 @@ function doUploadImg(imgDataUrl, onSuccess) {
   }
   XHR.open('POST', '//ca-upload.com/here/upload.php')
   XHR.send(formData)
-}
-
-function handleSaveMeme() {
-  const dataURL = gElCanvas.toDataURL('image/jpeg')
-  saveMeme(dataURL)
-  showMsg('Meme saved')
-  gIsSaving = false
 }
 
 ////////////////////////////////////////////////////
@@ -343,8 +334,10 @@ function onClearInput() {
   renderMeme()
 }
 
-function showMsg(msg) {
+function showMsg(msgKey) {
   const elMsg = document.querySelector('.user-msg')
+
+  const msg = getTranslation(msgKey, getCurrLang())
   elMsg.innerText = `${msg}`
   elMsg.classList.add('show')
   setTimeout(() => {

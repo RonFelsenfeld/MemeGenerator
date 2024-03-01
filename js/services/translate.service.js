@@ -67,6 +67,10 @@ const gTrans = {
     en: 'Share on Facebook',
     he: 'שתף בפייסבוק',
   },
+  deleteMsg: {
+    en: 'Line deleted',
+    he: 'שורה נמחקה',
+  },
   savedMsg: {
     en: 'Meme Saved',
     he: 'השמירה בוצעה',

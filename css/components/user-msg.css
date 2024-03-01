@@ -11,11 +11,23 @@
   text-transform: uppercase;
   background-color: rgb(92, 92, 228);
 
+  /* When switching between languages, the msg moves from left to right
+  opacity = 0, so it won't get seen by the user on the move
+  */
+  opacity: 0;
+
   /* Putting it outside the screen */
   transform: translateX(130%);
   transition: var(--transform-transition);
 }
 
-.user-msg.show {
+body.he .user-msg {
+  inset: auto auto 10px 10px;
+  transform: translateX(-130%);
+}
+
+.user-msg.show,
+body.he .user-msg.user-msg.show {
+  opacity: 1;
   transform: translateX(0);
 }

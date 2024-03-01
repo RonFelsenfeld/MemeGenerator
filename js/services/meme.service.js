@@ -100,7 +100,10 @@ function editMeme(memeId) {
 }
 
 function increaseKeywordCount(keyword) {
-  if (gKeywordsSearchCountMap[keyword] === 20) return // Limit
+  // In case the user input a keywords that don't exist
+  if (gKeywordsSearchCountMap[keyword] === undefined) return
+
+  if (gKeywordsSearchCountMap[keyword] === 15) return // Limit
   gKeywordsSearchCountMap[keyword]++
 }
 
@@ -129,10 +132,18 @@ function setCurrLine(lineId) {
   gMeme.selectedLineIdx = lineIdx
 }
 
-function addLine() {
+function addLine(height) {
   const newLine = _createLine()
+
+  // If it's the second line --> Align it at the end of the canvas
+  if (gMeme.lines.length === 1) newLine.y = height - newLine.size
+  // If the third+ line --> Align it at the middle of the canvas
+  else newLine.y = height / 2
+
   gMeme.lines.push(newLine)
-  gMeme.selectedLineIdx = gMeme.lines.length - 1 // Setting the selectedLine to the last one (the new one)
+
+  // Setting the selectedLine to the last one (the new one)
+  gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
 
 function removeLine() {
@@ -186,7 +197,7 @@ function setLineAlignment(posX) {
   line.x = posX
 }
 
-function dragLine({ x, y }) {
+function setLinePos({ x, y }) {
   const line = getCurrLine()
   line.x = x
   line.y = y
@@ -225,14 +236,16 @@ function addSticker(sticker) {
 function _createLine() {
   return {
     id: makeId(),
-    txt: 'Enter your text',
+    txt: getTranslation('enterTxt', getCurrLang()),
     family: 'Impact',
     size: 20,
     strokeColor: 'black',
     fillColor: 'white',
-    x: 15,
-    y: 15,
-    width: 119.9609375, // Hard coded width off the current txt at the current size
+    width: 119.9609375,
+    x: 250 - 119.9609375 / 2,
+    y: 10,
+    // The width is hard coded value after calculation
+    // X defined as canvasWidth/2 - lineWidth/2 (centering the line)
   }
 }
 

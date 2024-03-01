@@ -87,6 +87,7 @@ function onUploadImg(ev) {
 
     hideGallery()
     showEditor()
+    createMeme()
     renderMeme()
   })
 }
@@ -98,7 +99,9 @@ function onRandomMeme() {
 }
 
 function onSetFilter(filterBy) {
+  increaseKeywordCount(filterBy)
   setFilterBy(filterBy)
+  renderKeywords()
   renderGallery()
 }
 
@@ -196,5 +199,3 @@ function loadImageFromInput(ev, onImageReady) {
   }
   reader.readAsDataURL(ev.target.files[0])
 }
-
-////////////////////////////////////////////////////
