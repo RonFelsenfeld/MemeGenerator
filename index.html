@@ -13,31 +13,58 @@
     <div class="main-screen" onclick="onToggleMenu()"></div>
 
     <header class="main-header flex align-center space-between">
-      <h1 class="main-title">Memerator</h1>
+      <h1 class="main-title" data-trans="appTitle">Memerator</h1>
 
       <nav class="main-nav">
         <ul class="main-nav-list flex clean-list">
           <li>
-            <button class="btn btn-gallery" onclick="onGallery()">
+            <button
+              class="btn btn-gallery"
+              data-trans="galleryLink"
+              onclick="onGallery()"
+            >
               Gallery
             </button>
           </li>
           <li>
-            <button class="btn btn-saved" onclick="onSavedMemes()">
+            <button
+              class="btn btn-saved"
+              data-trans="savedMemeslink"
+              onclick="onSavedMemes()"
+            >
               Saved Memes
             </button>
           </li>
-          <li><button class="btn btn-about">About</button></li>
+          <li>
+            <button class="btn btn-about" data-trans="aboutLink">About</button>
+          </li>
         </ul>
       </nav>
+
+      <div class="lang-container flex">
+        <img
+          src="img/hebrew.png"
+          alt="Israel flag"
+          class="lang-icon"
+          data-lang="he"
+          onclick="onChangeLanguage(this.dataset)"
+        />
+        <img
+          src="img/english.png"
+          alt="Israel flag"
+          class="lang-icon"
+          data-lang="en"
+          onclick="onChangeLanguage(this.dataset)"
+        />
+      </div>
 
       <button class="btn-toggle-menu" onclick="onToggleMenu()" type="button">
         ☰
       </button>
     </header>
 
-    <main>
-      <section class="gallery-section main-layout">
+    <main class="main-content main-layout">
+      <section class="gallery-section">
         <header class="gallery-header flex space-between">
           <div class="filter-container flex">
             <input
@@ -46,27 +73,36 @@
               class="filter-input"
               list="keywords"
               autocomplete="off"
+              data-trans="filterImgs"
               placeholder="Filter images"
               oninput="onSetFilter(this.value)"
             />
 
             <datalist id="keywords">
-              <option value="Funny"></option>
-              <option value="Cute"></option>
-              <option value="Animal"></option>
-              <option value="Baby"></option>
-              <option value="Smile"></option>
-              <option value="Men"></option>
+              <option value="Funny" data-trans="Funny"></option>
+              <option value="Cute" data-trans="Cute"></option>
+              <option value="Animal" data-trans="Animal"></option>
+              <option value="Baby" data-trans="Baby"></option>
+              <option value="Smile" data-trans="Smile"></option>
+              <option value="Men" data-trans="Men"></option>
             </datalist>
 
-            <button class="btn btn-clear" onclick="onClearFilter()">
+            <button
+              class="btn btn-clear"
+              data-trans="clearBtn"
+              onclick="onClearFilter()"
+            >
               Clear
             </button>
           </div>
 
           <ul class="keywords-container clean-list flex align-center"></ul>
 
-          <button class="btn btn-frenzy" onclick="onRandomMeme()">
+          <button
+            class="btn btn-frenzy"
+            data-trans="frenzyBtn"
+            onclick="onRandomMeme()"
+          >
             Frenzy
           </button>
         </header>
@@ -74,7 +110,7 @@
         <div class="gallery"></div>
       </section>
 
-      <section class="editor-section main-layout">
+      <section class="editor-section">
         <div class="editor-container flex">
           <div class="canvas-container">
             <input
@@ -86,18 +122,23 @@
             <canvas class="main-canvas" width="500" height="500"></canvas>
           </div>
 
-          <div class="editor flex align-center">
+          <div class="editor flex column align-center">
             <div class="input-area flex">
               <input
                 type="text"
                 name="text-input"
                 id="text-input"
                 class="text-input"
+                data-trans="enterTxt"
                 oninput="onTextInput(this.value)"
                 autocomplete="off"
                 placeholder="Enter your text"
               />
-              <button class="btn btn-clear" onclick="onClearInput()">
+              <button
+                class="btn btn-clear"
+                data-trans="clearBtn"
+                onclick="onClearInput()"
+              >
                 Clear
               </button>
             </div>
@@ -138,7 +179,7 @@
               </button>
             </div>
 
-            <div class="text-editor flex">
+            <div class="text-editor column flex">
               <div class="flex space-around">
                 <button
                   title="Increase font size"
@@ -289,29 +330,30 @@
             </div>
 
             <div class="file-options flex">
-              <button
+              <a
+                href="#"
+                data-trans="downloadBtn"
                 title="Download meme"
-                class="btn btn-file-action link-download"
+                class="btn btn-file-action link-download flex align-center"
+                title="Download meme"
+                onclick="onDownloadMeme(this)"
+                download="my-meme.jpg"
+                >Download</a
               >
-                <a
-                  href="#"
-                  onclick="onDownloadMeme(this)"
-                  download="my-meme.jpg"
-                  >Download Meme</a
-                >
-              </button>
 
               <button
                 title="Save meme"
                 class="btn-file-action btn-save"
+                data-trans="saveBtn"
                 onclick="onSaveMeme()"
               >
-                Save Meme
+                Save
               </button>
 
               <button
                 title="Share meme to Facebook"
                 class="btn-file-action btn-facebook"
+                data-trans="facebookBtn"
                 onclick="onShareFacebook()"
               >
                 Share on Facebook
@@ -323,13 +365,11 @@
 
       <section class="saved-memes-section main-layout">
         <header class="saved-memes-header">
-          <h1 class="saved-title">Saved Memes</h1>
+          <h1 class="saved-title" data-trans="savedTitle">Saved Memes</h1>
         </header>
         <div class="saved-memes"></div>
       </section>
     </main>
-
-    <!-- ? Add footer -->
 
     <div class="user-msg"></div>
 

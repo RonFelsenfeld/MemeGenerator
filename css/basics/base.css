@@ -17,6 +17,14 @@ body {
   overflow-x: hidden;
 }
 
+body.en {
+  direction: ltr;
+}
+
+body.he {
+  direction: rtl;
+}
+
 h1,
 h2,
 p,

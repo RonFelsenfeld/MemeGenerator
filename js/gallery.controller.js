@@ -42,7 +42,7 @@ function renderKeywords() {
     // Else --> size = keywordCount + 10
     const keywordSize = !keywordsMap[keyword] ? 10 : keywordsMap[keyword] + 10
 
-    strHTML += `<li class="keyword" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${keyword}</li>`
+    strHTML += `<li class="keyword" data-trans="${keyword}" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${keyword}</li>`
   }
 
   const elKeywordsContainer = document.querySelector('.keywords-container')
@@ -189,4 +189,120 @@ function loadImageFromInput(ev, onImageReady) {
     img.onload = () => onImageReady(img)
   }
   reader.readAsDataURL(ev.target.files[0])
+}
+
+////////////////////////////////////////////////////
+
+const gTrans = {
+  appTitle: {
+    en: 'Memerator',
+    he: 'מימרייטור',
+  },
+  galleryLink: {
+    en: 'Gallery',
+    he: 'גלרייה',
+  },
+  savedMemeslink: {
+    en: 'Saved Memes',
+    he: 'השמורים שלי',
+  },
+  aboutLink: {
+    en: 'About',
+    he: 'אודות',
+  },
+  filterImgs: {
+    en: 'Filter images',
+    he: 'סנן תמונות',
+  },
+  clearBtn: {
+    en: 'Clear',
+    he: 'נקה',
+  },
+  Funny: {
+    en: 'Funny',
+    he: 'מצחיק',
+  },
+  Cute: {
+    en: 'Cute',
+    he: 'חמוד',
+  },
+  Animal: {
+    en: 'Animal',
+    he: 'חיות',
+  },
+  Baby: {
+    en: 'Baby',
+    he: 'תינוק',
+  },
+  Smile: {
+    en: 'Smile',
+    he: 'חיוך',
+  },
+  Men: {
+    en: 'Men',
+    he: 'גבר',
+  },
+  frenzyBtn: {
+    en: 'Frenzy',
+    he: 'השתולל',
+  },
+  enterTxt: {
+    en: 'Enter your text',
+    he: 'הקלד טקסט',
+  },
+  downloadBtn: {
+    en: 'Download',
+    he: 'הורדה',
+  },
+  saveBtn: {
+    en: 'Save',
+    he: 'שמור',
+  },
+  facebookBtn: {
+    en: 'Share on Facebook',
+    he: 'שתף בפייסבוק',
+  },
+  savedMsg: {
+    en: 'Meme Saved',
+    he: 'השמירה בוצעה',
+  },
+  downloadMsg: {
+    en: 'Meme downloaded',
+    he: 'ההורדה בוצעה',
+  },
+  savedTitle: {
+    en: 'Saved Memes',
+    he: 'הממים שלי',
+  },
+}
+
+function getTrans(key, lang) {
+  return gTrans[key][lang]
+}
+
+function onChangeLanguage({ lang }) {
+  // Changes the page direction based on class
+  document.body.className = lang
+
+  const elsToTranslate = [...document.querySelectorAll('[data-trans]')]
+
+  // For each element -->
+  elsToTranslate.forEach(el => {
+    // Get his translate keys
+    const transKey = el.dataset.trans
+
+    // Get his translation based on chosen language
+    const trans = getTrans(transKey, lang)
+
+    switch (el.nodeName) {
+      case 'INPUT':
+        el.placeholder = trans
+        break
+      case 'OPTION':
+        el.value = trans
+      default:
+        el.innerText = trans
+        break
+    }
+  })
 }

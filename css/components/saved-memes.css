@@ -22,9 +22,11 @@
 }
 
 .saved-memes .saved-meme {
-  cursor: pointer;
+  border-radius: var(--border-radius);
+
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.211);
   transition: transform var(--transform-transition);
+  cursor: pointer;
 }
 
 .saved-memes .saved-meme:hover {
