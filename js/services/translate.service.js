@@ -132,13 +132,18 @@ function translatePage() {
     // Get his translation based on chosen language
     const trans = getTranslation(transKey, gCurrLanguage)
 
-    switch (el.nodeName) {
-      case 'INPUT':
-        el.placeholder = trans
-        break
-      default:
-        el.innerText = trans
-        break
+    // If el is an input --> Change it's placeholder
+    if (el.nodeName === 'INPUT') {
+      el.placeholder = trans
+      return
     }
+
+    // If el is the logo --> Change only the text and keep the yellow dot (a span)
+    if (el.classList.contains('logo')) {
+      el.childNodes[0].textContent = trans
+      return
+    }
+
+    el.innerText = trans
   })
 }
