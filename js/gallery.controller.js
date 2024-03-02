@@ -109,9 +109,15 @@ function onSetFilter(filterBy) {
 }
 
 function onSearchByKeyword(keyword) {
-  increaseKeywordCount(keyword)
-  setFilterBy(keyword)
+  const transKeyword = getTranslation(keyword, getCurrLang())
+  setFilterBy(transKeyword)
 
+  /* Because keyword will always be in EN when clicking a keyword
+   because of it's value, and the countMap is in EN too --> 
+   no need to translate)
+   */
+
+  increaseKeywordCount(keyword)
   updateFilterInput(keyword)
   renderGallery()
   renderKeywords()
@@ -205,5 +211,8 @@ function loadImageFromInput(ev, onImageReady) {
 function updateFilterInput(word) {
   const elFilterInput = document.querySelector('.filter-input')
   const transWord = getTranslation(word, getCurrLang())
-  elFilterInput.value = transWord
+
+  // If transWord === -1, getTranslation didn't found translation for word
+  // If that's the case --> value === word (the user's input)
+  elFilterInput.value = transWord !== -1 ? transWord : word
 }

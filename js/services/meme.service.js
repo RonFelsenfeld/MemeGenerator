@@ -261,7 +261,22 @@ function _createLine() {
 function _filterImgs() {
   const filteredImgs = gIMGS.filter(img => {
     const { keywords } = img
-    return keywords.some(word => word.includes(gFilterBy))
+
+    // Create an array of all keywords translated to the curr lang
+    const transKeywords = keywords.map(keyword => {
+      // Capitalizing keyword (because it's saved capitalized in gTrans)
+      const capitalizeKeyword =
+        keyword.charAt(0).toUpperCase() + keyword.slice(1)
+
+      // Translating keyword
+      let transKeyword = getTranslation(capitalizeKeyword, getCurrLang())
+
+      // If the keyword is not translatable --> define as ''
+      if (transKeyword === -1) transKeyword = ''
+      return transKeyword
+    })
+
+    return transKeywords.some(word => word.toLowerCase().includes(gFilterBy))
   })
 
   return filteredImgs

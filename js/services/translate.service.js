@@ -96,6 +96,9 @@ const gTrans = {
 let gCurrLanguage = 'en'
 
 function getTranslation(key, lang) {
+  // If the key doesn't has translation --> return -1
+  if (!gTrans[key]) return -1
+
   return gTrans[key][lang]
 }
 
@@ -125,8 +128,6 @@ function translatePage() {
       case 'INPUT':
         el.placeholder = trans
         break
-      case 'OPTION':
-      // el.value = trans
       default:
         el.innerText = trans
         break
