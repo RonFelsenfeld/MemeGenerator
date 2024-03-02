@@ -114,6 +114,9 @@ function translatePage() {
   // Changes the page direction based on class
   document.body.className = gCurrLanguage
 
+  // Changes the document title (Tab)
+  document.title = getTranslation('appTitle', gCurrLanguage)
+
   const elsToTranslate = [...document.querySelectorAll('[data-trans]')]
 
   // For each element -->
