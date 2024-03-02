@@ -24,7 +24,7 @@ const gIMGS = [
   { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
 ]
 
-const gSavesMemes = loadFromStorage(SAVED_KEY) || []
+const gSavedMemes = loadFromStorage(SAVED_KEY) || []
 const gKeywordsSearchCountMap = {
   Funny: 0,
   Cute: 0,
@@ -66,7 +66,7 @@ function getKeywords() {
 }
 
 function getSavedMemes() {
-  return gSavesMemes
+  return gSavedMemes
 }
 
 function setIsDragging(isDrag) {
@@ -96,7 +96,7 @@ function getDataURL() {
 }
 
 function editMeme(memeId) {
-  const loadedMeme = gSavesMemes.find(savedMeme => savedMeme.id === memeId)
+  const loadedMeme = gSavedMemes.find(savedMeme => savedMeme.id === memeId)
   gMeme = loadedMeme
 }
 
@@ -213,16 +213,24 @@ function moveLine(dir) {
 }
 
 function saveMeme() {
-  const previousVersion = gSavesMemes.find(
+  const previousVersion = gSavedMemes.find(
     savedMeme => savedMeme.id === gMeme.id
   )
 
   // If the meme is already saved --> change it's url
   if (previousVersion) previousVersion.dataURL = getDataURL()
   // Else --> save a new meme
-  else gSavesMemes.push(gMeme)
+  else gSavedMemes.push(gMeme)
 
-  _saveMemeToStorage()
+  _saveMemesToStorage()
+}
+
+function deleteSaveMeme(memeId) {
+  const memeIdx = gSavedMemes.findIndex(meme => meme.id === memeId)
+  if (memeIdx === -1) return
+
+  gSavedMemes.splice(memeIdx, 1)
+  _saveMemesToStorage()
 }
 
 function addSticker(sticker) {
@@ -259,6 +267,6 @@ function _filterImgs() {
   return filteredImgs
 }
 
-function _saveMemeToStorage(meme) {
-  saveToStorage(SAVED_KEY, gSavesMemes)
+function _saveMemesToStorage() {
+  saveToStorage(SAVED_KEY, gSavedMemes)
 }

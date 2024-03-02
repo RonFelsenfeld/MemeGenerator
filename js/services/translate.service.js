@@ -79,6 +79,10 @@ const gTrans = {
     en: 'Meme downloaded',
     he: 'ההורדה בוצעה',
   },
+  deleteMsg: {
+    en: 'Meme deleted',
+    he: 'המחיקה בוצעה',
+  },
   savedTitle: {
     en: 'Saved Memes',
     he: 'הממים שלי',
