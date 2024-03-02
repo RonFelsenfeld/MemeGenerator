@@ -1,5 +1,5 @@
 .editor-container {
-  align-items: flex-start;
+  align-items: center;
 
   border-radius: var(--border-radius);
   background-color: var(--primary-1);

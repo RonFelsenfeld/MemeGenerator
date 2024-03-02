@@ -22,6 +22,13 @@ const gIMGS = [
   { id: gId++, url: 'img/16.jpg', keywords: ['smile', 'cute'] },
   { id: gId++, url: 'img/17.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
+  { id: gId++, url: 'img/19.jpg', keywords: ['cute'] },
+  { id: gId++, url: 'img/20.jpg', keywords: ['funny', 'men'] },
+  { id: gId++, url: 'img/21.jpg', keywords: ['men'] },
+  { id: gId++, url: 'img/22.jpg', keywords: ['baby'] },
+  { id: gId++, url: 'img/23.jpg', keywords: ['funny', 'men'] },
+  { id: gId++, url: 'img/24.jpg', keywords: ['animal', 'cute'] },
+  { id: gId++, url: 'img/25.jpg', keywords: ['smile'] },
 ]
 
 const gSavedMemes = loadFromStorage(SAVED_KEY) || []
