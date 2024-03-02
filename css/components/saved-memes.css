@@ -42,15 +42,24 @@
 }
 
 .saved-meme:hover img {
-  opacity: 0.5;
+  opacity: 0.2;
+}
+
+.saved-meme .edit-msg {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4em;
 }
 
 .saved-meme .icons-container {
   position: absolute;
   inset: 30px 30px auto auto;
   gap: 2em;
-
   transform: translateY(30px);
+}
+
+.saved-meme > *:not(img) {
   opacity: 0;
   transition: all var(--transform-transition);
 }
@@ -69,11 +78,22 @@
   color: red;
 }
 
-.saved-meme:hover .icons-container {
+.saved-meme:hover > *:not(img) {
   opacity: 1;
+}
+
+.saved-meme:hover .icons-container {
   transform: translateY(0);
 }
 
 .icons-container .icon:hover {
   transform: scale(1.3);
+}
+
+.saved-memes-section .no-saved-alert {
+  justify-self: center;
+
+  font-size: 5em;
+  text-transform: uppercase;
+  letter-spacing: 3px;
 }

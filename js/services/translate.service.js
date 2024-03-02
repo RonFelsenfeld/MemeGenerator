@@ -87,6 +87,10 @@ const gTrans = {
     en: 'Saved Memes',
     he: 'הממים שלי',
   },
+  savedAlert: {
+    en: 'No saved memes',
+    he: 'אין ממים שמורים',
+  },
 }
 
 let gCurrLanguage = 'en'
