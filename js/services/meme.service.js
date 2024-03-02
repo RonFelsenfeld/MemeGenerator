@@ -41,6 +41,7 @@ let gMeme
 
 ////////////////////////////////////////////////////
 
+// Meme gets created after img is selected (Need to reset it after returning to the gallery)
 function createMeme() {
   gMeme = {
     id: makeId(), // Will be the key when saving to storage
@@ -197,10 +198,10 @@ function setLineAlignment(posX) {
   line.x = posX
 }
 
-function setLinePos({ x, y }) {
+function setLinePos(deltaX, deltaY) {
   const line = getCurrLine()
-  line.x = x
-  line.y = y
+  line.x += deltaX
+  line.y += deltaY
 }
 
 function moveLine(dir) {

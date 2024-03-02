@@ -118,7 +118,7 @@ function translatePage() {
         el.placeholder = trans
         break
       case 'OPTION':
-        el.value = trans
+      // el.value = trans
       default:
         el.innerText = trans
         break

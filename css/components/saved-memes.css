@@ -22,13 +22,58 @@
 }
 
 .saved-memes .saved-meme {
+  position: relative;
+  overflow: hidden;
+
   border-radius: var(--border-radius);
 
+  background-color: darkgray;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.211);
-  transition: transform var(--transform-transition);
+  transition: all var(--transform-transition);
   cursor: pointer;
 }
 
 .saved-memes .saved-meme:hover {
   transform: translateY(-15px);
+}
+
+.saved-meme img {
+  transition: opacity 0.3s;
+}
+
+.saved-meme:hover img {
+  opacity: 0.5;
+}
+
+.saved-meme .icons-container {
+  position: absolute;
+  inset: 30px 30px auto auto;
+  gap: 2em;
+
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all var(--transform-transition);
+}
+
+.icons-container .icon {
+  background-color: transparent;
+  font-size: 3em;
+  transition: transform var(--transform-transition);
+}
+
+.icon.fa-download {
+  color: var(--primary-2);
+}
+
+.icon.fa-trash {
+  color: red;
+}
+
+.saved-meme:hover .icons-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.icons-container .icon:hover {
+  transform: scale(1.3);
 }

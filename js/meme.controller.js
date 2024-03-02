@@ -3,6 +3,7 @@
 const FRAME_PAD = 10
 
 let gUploadedImg = null
+let gStartDragPos = null
 
 let gElCanvas
 let gCtx
@@ -162,6 +163,7 @@ function onCanvasClicked(ev) {
     setCurrLine(selectedLine.id)
     updateEditor()
     setIsDragging(true)
+    gStartDragPos = { x: offsetX, y: offsetY }
   }
 
   document.body.style.cursor = 'grab'
@@ -170,10 +172,13 @@ function onCanvasClicked(ev) {
 
 function onCanvasDrag(ev) {
   if (!isDragging()) return
-
   const newPos = getEvPos(ev)
-  setLinePos(newPos)
 
+  const deltaX = newPos.x - gStartDragPos.x
+  const deltaY = newPos.y - gStartDragPos.y
+  setLinePos(deltaX, deltaY)
+
+  gStartDragPos = newPos
   document.body.style.cursor = 'grabbing'
   renderMeme()
 }
@@ -181,6 +186,7 @@ function onCanvasDrag(ev) {
 function onStopDrag() {
   if (isDragging()) renderInlineInput()
   setIsDragging(false)
+  gStartDragPos = null
   document.body.style.cursor = 'auto'
 }
 

@@ -41,8 +41,9 @@ function renderKeywords() {
     // If keywordsCount = 0 --> size = 10
     // Else --> size = keywordCount + 10
     const keywordSize = !keywordsMap[keyword] ? 10 : keywordsMap[keyword] + 10
+    const transKeywords = getTranslation(keyword, getCurrLang())
 
-    strHTML += `<li class="keyword" data-trans="${keyword}" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${keyword}</li>`
+    strHTML += `<li class="keyword" data-trans="${keyword}" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${transKeywords}</li>`
   }
 
   const elKeywordsContainer = document.querySelector('.keywords-container')
@@ -101,6 +102,8 @@ function onRandomMeme() {
 function onSetFilter(filterBy) {
   increaseKeywordCount(filterBy)
   setFilterBy(filterBy)
+
+  updateFilterInput(filterBy)
   renderKeywords()
   renderGallery()
 }
@@ -109,8 +112,7 @@ function onSearchByKeyword(keyword) {
   increaseKeywordCount(keyword)
   setFilterBy(keyword)
 
-  const elFilterInput = document.querySelector('.filter-input')
-  elFilterInput.value = keyword
+  updateFilterInput(keyword)
   renderGallery()
   renderKeywords()
 }
@@ -198,4 +200,10 @@ function loadImageFromInput(ev, onImageReady) {
     img.onload = () => onImageReady(img)
   }
   reader.readAsDataURL(ev.target.files[0])
+}
+
+function updateFilterInput(word) {
+  const elFilterInput = document.querySelector('.filter-input')
+  const transWord = getTranslation(word, getCurrLang())
+  elFilterInput.value = transWord
 }
