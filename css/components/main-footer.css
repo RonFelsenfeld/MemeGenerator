@@ -1,7 +1,11 @@
 .main-footer {
-  height: 100px;
+  height: 150px;
   justify-content: center;
   background-color: var(--primary-1);
+}
+
+.main-footer .logo {
+  font-size: 3em;
 }
 
 .main-footer .copyright {

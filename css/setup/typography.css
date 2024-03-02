@@ -7,3 +7,13 @@
   font-family: robotoBold;
   src: url(../../fonts/Roboto/Roboto-Bold.ttf);
 }
+
+@font-face {
+  font-family: playFairDisplay;
+  src: url(../../fonts/Playfair-Display/PlayfairDisplay-Regular.ttf);
+}
+
+@font-face {
+  font-family: heebo;
+  src: url(../../fonts/Heebo/Heebo-VariableFont_wght.ttf);
+}

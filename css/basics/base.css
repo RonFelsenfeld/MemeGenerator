@@ -7,7 +7,6 @@
 html {
   /* Setting root font size to 10px */
   font-size: 0.625rem;
-  font-family: robotoRegular, serif;
   color: var(--primary-2);
   background-color: var(--primary-base);
 }
@@ -20,10 +19,12 @@ body {
 
 body.en {
   direction: ltr;
+  font-family: robotoRegular, serif;
 }
 
 body.he {
   direction: rtl;
+  font-family: heebo, serif;
 }
 
 h1,

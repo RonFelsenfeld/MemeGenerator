@@ -1,0 +1,16 @@
+.logo {
+  font-family: playFairDisplay, serif;
+}
+
+.logo .logo-dot {
+  color: var(--secondary-base);
+}
+
+.main-header .logo {
+  font-size: 5em;
+}
+
+.main-footer .logo {
+  margin-block-end: 0.5em;
+  font-size: 3em;
+}

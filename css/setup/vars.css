@@ -3,6 +3,8 @@
   --primary-1: #383b42;
   --primary-base: #22252c;
 
+  --secondary-base: rgb(255, 255, 128);
+
   --gradient-color: #6daddb;
   --gradient-image: linear-gradient(315deg, #313131 0%, #6daddb 74%);
 

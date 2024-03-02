@@ -91,6 +91,10 @@ const gTrans = {
     en: 'No saved memes',
     he: 'אין ממים שמורים',
   },
+  copyright: {
+    en: 'Copyright © 2024 Ron Felsenfeld. All rights reserved',
+    he: 'זכויות יוצרים © 2024 רון פלסנפלד. כל הזכויות שמורות',
+  },
 }
 
 let gCurrLanguage = 'en'
@@ -112,7 +116,8 @@ function setCurrLang(lang) {
 
 function translatePage() {
   // Changes the page direction based on class
-  document.body.className = gCurrLanguage
+  document.body.classList.toggle('he')
+  document.body.classList.toggle('en')
 
   // Changes the document title (Tab)
   document.title = getTranslation('appTitle', gCurrLanguage)
