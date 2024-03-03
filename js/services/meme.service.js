@@ -2,7 +2,6 @@
 
 const SAVED_KEY = 'memesDB'
 const KEYWORDS_KEY = 'keywordsDB'
-
 const LINE_INITIAL_WIDTH = 119.9609375
 
 let gId = 1

@@ -35,7 +35,8 @@ function renderGallery() {
 
 function renderKeywords() {
   const keywordsMap = getKeywords()
-  let strHTML = ''
+  let strSearchBarHTML = ''
+  let strDatalistHTML = ''
 
   for (const keyword in keywordsMap) {
     // If keywordsCount = 0 --> size = 10
@@ -43,11 +44,16 @@ function renderKeywords() {
     const keywordSize = !keywordsMap[keyword] ? 10 : keywordsMap[keyword] + 10
     const transKeywords = getTranslation(keyword, getCurrLang())
 
-    strHTML += `<li class="keyword" data-trans="${keyword}" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${transKeywords}</li>`
+    strSearchBarHTML += `<li class="keyword" data-trans="${keyword}" style="font-size: ${keywordSize}px" onclick=onSearchByKeyword('${keyword}')>${transKeywords}</li>`
+
+    strDatalistHTML += `<option value="${keyword}" data-trans="${keyword}"></option>`
   }
 
   const elKeywordsContainer = document.querySelector('.keywords-container')
-  elKeywordsContainer.innerHTML = strHTML
+  elKeywordsContainer.innerHTML = strSearchBarHTML
+
+  const elKeywordsDatalist = document.querySelector('#keywords')
+  elKeywordsDatalist.innerHTML = strDatalistHTML
 }
 
 ////////////////////////////////////////////////////
