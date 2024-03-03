@@ -131,7 +131,7 @@ function onClearFilter() {
   renderGallery()
 }
 
-function onChangeLanguage({ lang }) {
+function onChangeLanguage(lang) {
   if (lang === getCurrLang()) return
 
   setCurrLang(lang)

@@ -1,6 +1,7 @@
 'use strict'
 
 const SAVED_KEY = 'memesDB'
+const LINE_INITIAL_WIDTH = 119.9609375
 
 let gId = 1
 const gIMGS = [
@@ -23,7 +24,7 @@ const gIMGS = [
   { id: gId++, url: 'img/17.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
   { id: gId++, url: 'img/19.jpg', keywords: ['cute'] },
-  { id: gId++, url: 'img/20.jpg', keywords: ['funny', 'men'] },
+  { id: gId++, url: 'img/20.jpg', keywords: ['funny', 'me0n'] },
   { id: gId++, url: 'img/21.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/22.jpg', keywords: ['baby'] },
   { id: gId++, url: 'img/23.jpg', keywords: ['funny', 'men'] },
@@ -124,10 +125,16 @@ function getCurrLine() {
 // Works on direction (next/previous)
 function switchLine(dir) {
   // If selectedLine is the last one && dir is positive (trying to go next line)
-  if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) return
+  if (gMeme.selectedLineIdx === gMeme.lines.length - 1 && dir > 0) {
+    gMeme.selectedLineIdx = 0
+    return
+  }
 
   // If selectedLine is the first one && dir is negative (trying to go prev line)
-  if (gMeme.selectedLineIdx === 0 && dir < 0) return
+  if (gMeme.selectedLineIdx === 0 && dir < 0) {
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    return
+  }
 
   gMeme.selectedLineIdx += dir
 }
@@ -192,7 +199,7 @@ function decreaseTextSize() {
 
 function setLineWidth(newWidth) {
   const line = getCurrLine()
-  line.width = +newWidth
+  line.width = newWidth
 }
 
 function setFontFamily(family) {
@@ -205,7 +212,7 @@ function setLineAlignment(posX) {
   line.x = posX
 }
 
-function setLinePos(deltaX, deltaY) {
+function updateLinePos(deltaX, deltaY) {
   const line = getCurrLine()
   line.x += deltaX
   line.y += deltaY
@@ -257,9 +264,9 @@ function _createLine() {
     size: 20,
     strokeColor: 'black',
     fillColor: 'white',
-    width: 119.9609375,
-    x: 250 - 119.9609375 / 2,
-    y: 10,
+    width: LINE_INITIAL_WIDTH,
+    x: 250 - LINE_INITIAL_WIDTH / 2,
+    y: 20,
     // The width is hard coded value after calculation
     // X defined as canvasWidth/2 - lineWidth/2 (centering the line)
   }

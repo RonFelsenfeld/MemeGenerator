@@ -52,9 +52,8 @@ function onTextInput(txt) {
   const lineWidth = calcLineWidth()
   setLineWidth(lineWidth)
 
-  // If editing from inline --> show on main text input
-  const elTextInput = document.querySelector('.text-input')
-  elTextInput.value = txt
+  // Updates both inline and editor input fields
+  updateAllInputFields(txt)
   renderMeme()
 }
 
@@ -184,7 +183,7 @@ function onCanvasDrag(ev) {
 
   const deltaX = newPos.x - gStartDragPos.x
   const deltaY = newPos.y - gStartDragPos.y
-  setLinePos(deltaX, deltaY)
+  updateLinePos(deltaX, deltaY)
 
   gStartDragPos = newPos
   document.body.style.cursor = 'grabbing'
@@ -391,4 +390,12 @@ function updateEditor() {
 
   const elTextInput = document.querySelector('.text-input')
   elTextInput.placeholder = txt
+}
+
+function updateAllInputFields(txt) {
+  const elTextInput = document.querySelector('.text-input')
+  elTextInput.value = txt
+
+  const elTextInput2 = document.querySelector('.inline-text-input')
+  elTextInput2.value = txt
 }
