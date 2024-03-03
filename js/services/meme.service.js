@@ -1,6 +1,8 @@
 'use strict'
 
 const SAVED_KEY = 'memesDB'
+const KEYWORDS_KEY = 'keywordsDB'
+
 const LINE_INITIAL_WIDTH = 119.9609375
 
 let gId = 1
@@ -8,23 +10,23 @@ const gIMGS = [
   { id: gId++, url: 'img/1.jpg', keywords: ['funny'] },
   { id: gId++, url: 'img/2.jpg', keywords: ['cute', 'animal'] },
   { id: gId++, url: 'img/3.jpg', keywords: ['cute'] },
-  { id: gId++, url: 'img/4.jpg', keywords: ['cute, animal'] },
+  { id: gId++, url: 'img/4.jpg', keywords: ['cute', 'animal'] },
   { id: gId++, url: 'img/5.jpg', keywords: ['funny', 'baby'] },
   { id: gId++, url: 'img/6.jpg', keywords: ['funny'] },
-  { id: gId++, url: 'img/7.jpg', keywords: ['cute, baby'] },
+  { id: gId++, url: 'img/7.jpg', keywords: ['cute', 'baby'] },
   { id: gId++, url: 'img/8.jpg', keywords: ['smile'] },
   { id: gId++, url: 'img/9.jpg', keywords: ['smile', 'funny'] },
   { id: gId++, url: 'img/10.jpg', keywords: ['smile', 'men'] },
   { id: gId++, url: 'img/11.jpg', keywords: ['funny', 'men'] },
-  { id: gId++, url: 'img/12.jpg', keywords: ['funny, men'] },
-  { id: gId++, url: 'img/13.jpg', keywords: ['happy', 'men'] },
+  { id: gId++, url: 'img/12.jpg', keywords: ['funny', 'men'] },
+  { id: gId++, url: 'img/13.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/14.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/15.jpg', keywords: ['funny'] },
   { id: gId++, url: 'img/16.jpg', keywords: ['smile', 'cute'] },
   { id: gId++, url: 'img/17.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/18.jpg', keywords: ['cute'] },
   { id: gId++, url: 'img/19.jpg', keywords: ['cute'] },
-  { id: gId++, url: 'img/20.jpg', keywords: ['funny', 'me0n'] },
+  { id: gId++, url: 'img/20.jpg', keywords: ['funny', 'men'] },
   { id: gId++, url: 'img/21.jpg', keywords: ['men'] },
   { id: gId++, url: 'img/22.jpg', keywords: ['baby'] },
   { id: gId++, url: 'img/23.jpg', keywords: ['funny', 'men'] },
@@ -33,14 +35,9 @@ const gIMGS = [
 ]
 
 const gSavedMemes = loadFromStorage(SAVED_KEY) || []
-const gKeywordsSearchCountMap = {
-  Funny: 0,
-  Cute: 0,
-  Animal: 0,
-  Baby: 0,
-  Smile: 0,
-  Men: 0,
-}
+
+let gKeywordsSearchCountMap
+_createKeywordsMap()
 
 let gFilterBy = ''
 let gIsDrag = false
@@ -114,6 +111,8 @@ function increaseKeywordCount(keyword) {
 
   if (gKeywordsSearchCountMap[keyword] === 15) return // Limit
   gKeywordsSearchCountMap[keyword]++
+
+  _saveKeywordsMapToStorage()
 }
 
 ////////////////////////////////////////////////////
@@ -296,6 +295,37 @@ function _filterImgs() {
   return filteredImgs
 }
 
+function _createKeywordsMap() {
+  gKeywordsSearchCountMap = loadFromStorage(KEYWORDS_KEY)
+  if (gKeywordsSearchCountMap) return
+
+  gKeywordsSearchCountMap = _generateKeywordsMap()
+  _saveKeywordsMapToStorage()
+}
+
+function _generateKeywordsMap() {
+  const keywordsMap = gIMGS.reduce((map, img) => {
+    const { keywords } = img
+
+    keywords.forEach(keyword => {
+      if (!map[keyword]) {
+        const capitalizedKeyword =
+          keyword.charAt(0).toUpperCase() + keyword.slice(1)
+        map[capitalizedKeyword] = 0
+      }
+    })
+
+    return map
+  }, {})
+
+  console.log(keywordsMap)
+  return keywordsMap
+}
+
 function _saveMemesToStorage() {
   saveToStorage(SAVED_KEY, gSavedMemes)
+}
+
+function _saveKeywordsMapToStorage() {
+  saveToStorage(KEYWORDS_KEY, gKeywordsSearchCountMap)
 }
