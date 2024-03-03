@@ -41,6 +41,10 @@ button {
   font-family: inherit;
 }
 
+button:active {
+  scale: 0.95;
+}
+
 img {
   width: 100%;
 }
