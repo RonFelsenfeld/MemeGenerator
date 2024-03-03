@@ -7,8 +7,8 @@
   }
 
   .main-canvas {
-    width: 380px;
-    height: 380px;
+    min-width: 380px;
+    min-height: 380px;
   }
 
   .main-header .btn-toggle-menu {
