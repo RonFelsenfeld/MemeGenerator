@@ -1,3 +1,7 @@
+.gallery-section {
+  transition: transform var(--slide-in-transition);
+}
+
 .gallery-section .gallery-header {
   padding: 3em;
   border-radius: var(--border-radius);

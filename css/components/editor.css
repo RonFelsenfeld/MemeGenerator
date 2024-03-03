@@ -1,3 +1,8 @@
+.editor-section {
+  transition: transform var(--slide-in-transition);
+  transform: translateX(200%);
+}
+
 .editor-container {
   align-items: center;
 

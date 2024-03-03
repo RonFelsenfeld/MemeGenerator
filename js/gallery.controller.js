@@ -28,9 +28,9 @@ function renderGallery() {
   </div>`
   strHTMLs.unshift(uploadHTMLstr)
 
-  showGallery()
   const elGallery = document.querySelector('.gallery')
   elGallery.innerHTML = strHTMLs.join('')
+  showGallery()
 }
 
 function renderKeywords() {
@@ -147,12 +147,12 @@ function onChangeLanguage(lang) {
 
 function hideGallery() {
   const elGallery = document.querySelector('.gallery-section')
-  elGallery.style.display = 'none'
+  slideOutSection(elGallery)
 }
 
 function showGallery() {
   const elGallery = document.querySelector('.gallery-section')
-  elGallery.style.display = 'grid'
+  slideInSection(elGallery)
 
   const elGalleryLink = document.querySelector('.btn-gallery')
   highlightCurrSection(elGalleryLink)
@@ -160,27 +160,58 @@ function showGallery() {
 
 function hideEditor() {
   const elEditor = document.querySelector('.editor-section')
-  elEditor.style.display = 'none'
+  slideOutSection(elEditor)
 }
 
 function showEditor() {
   const elEditor = document.querySelector('.editor-section')
-  elEditor.style.display = 'grid'
-
+  slideInSection(elEditor)
   highlightCurrSection()
 }
 
 function hideSavedMemes() {
   const elEditor = document.querySelector('.saved-memes-section')
-  elEditor.style.display = 'none'
+  slideOutSection(elEditor)
 }
 
 function showSavedMemes() {
-  const elEditor = document.querySelector('.saved-memes-section')
-  elEditor.style.display = 'grid'
+  const elSavedMemes = document.querySelector('.saved-memes-section')
+  slideInSection(elSavedMemes)
 
   const elSavedLink = document.querySelector('.btn-saved')
   highlightCurrSection(elSavedLink)
+}
+
+function slideInSection(elSection) {
+  const elFooter = document.querySelector('.main-footer')
+
+  setTimeout(() => {
+    elSection.style.display = 'grid'
+  }, 500)
+
+  setTimeout(() => {
+    elSection.style.transform = 'translateX(0)'
+  }, 700)
+
+  setTimeout(() => {
+    elFooter.style.opacity = '1'
+  }, 1500)
+}
+
+function slideOutSection(elSection) {
+  const elFooter = document.querySelector('.main-footer')
+  elFooter.style.opacity = '0'
+
+  let translateStr = '200%'
+  // If it's the gallery --> set translation to -200%
+  if (elSection.classList.contains('gallery-section')) translateStr = '-200%'
+
+  elSection.style.transform = `translateX(${translateStr})`
+
+  setTimeout(() => {
+    elSection.style.display = 'none'
+    elFooter.style.opacity = '1'
+  }, 500)
 }
 
 function onToggleMenu() {

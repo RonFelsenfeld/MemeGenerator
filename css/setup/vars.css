@@ -13,4 +13,5 @@
 
   --transform-transition: 0.5s;
   --color-transition: 0.4s;
+  --slide-in-transition: 1s;
 }

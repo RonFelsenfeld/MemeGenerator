@@ -2,6 +2,7 @@
   height: 150px;
   justify-content: center;
   background-color: var(--primary-1);
+  transition: opacity 0.8s;
 }
 
 .main-footer .logo {

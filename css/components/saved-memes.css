@@ -1,3 +1,8 @@
+.saved-memes-section {
+  transition: transform var(--slide-in-transition);
+  transform: translateX(200%);
+}
+
 .saved-memes-section .saved-memes {
   gap: 4em;
 
