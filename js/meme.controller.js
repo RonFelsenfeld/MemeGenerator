@@ -95,12 +95,14 @@ function onDecreaseFont() {
 function onAddLine() {
   // Adding line and aligning it based on canvas height
   addLine(gElCanvas.height)
-  updateEditor('newLine')
+  clearInput()
+  updateEditor()
   renderMeme()
 }
 
 function onSwitchLine({ dir }) {
   switchLine(+dir)
+  clearInput()
   updateEditor()
   renderMeme()
 }
@@ -112,6 +114,8 @@ function onRemoveLine() {
   removeLine()
   showMsg('deleteMsg')
   hideInlineInput()
+
+  clearInput()
   updateEditor()
   renderMeme()
 }
@@ -161,8 +165,10 @@ function onCanvasClicked(ev) {
 
   if (selectedLine) {
     setCurrLine(selectedLine.id)
+    clearInput()
     updateEditor()
     setIsDragging(true)
+    renderInlineInput()
     gStartDragPos = { x: offsetX, y: offsetY }
   }
 
@@ -172,6 +178,8 @@ function onCanvasClicked(ev) {
 
 function onCanvasDrag(ev) {
   if (!isDragging()) return
+  hideInlineInput()
+
   const newPos = getEvPos(ev)
 
   const deltaX = newPos.x - gStartDragPos.x
@@ -184,7 +192,6 @@ function onCanvasDrag(ev) {
 }
 
 function onStopDrag() {
-  if (isDragging()) renderInlineInput()
   setIsDragging(false)
   gStartDragPos = null
   document.body.style.cursor = 'auto'
@@ -329,15 +336,18 @@ function updateInputField() {
 }
 
 function onClearInput() {
-  const elTextInput = document.querySelector('.text-input')
-  elTextInput.value = ''
-
+  clearInput()
   setLineTxt('')
 
   const lineWidth = calcLineWidth()
   setLineWidth(lineWidth)
 
   renderMeme()
+}
+
+function clearInput() {
+  const elTextInput = document.querySelector('.text-input')
+  elTextInput.value = ''
 }
 
 function showMsg(msgKey) {
@@ -380,5 +390,5 @@ function updateEditor() {
   elFontSelect.value = family
 
   const elTextInput = document.querySelector('.text-input')
-  elTextInput.value = txt
+  elTextInput.placeholder = txt
 }
